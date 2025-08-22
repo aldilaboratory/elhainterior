@@ -14,23 +14,13 @@
         <!-- Scripts -->
         @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     </head>
-    <body class="bg-light text-dark" style="font-family: 'Figtree', sans-serif;">
-        <div class="min-vh-100 d-flex flex-column justify-content-center align-items-center pt-4 pt-sm-0">
-            <!-- Logo Section -->
-            <div class="mb-4">
-                <a href="/">
-                    <x-application-logo class="text-secondary" style="width: 5rem; height: 5rem;" />
-                </a>
-            </div>
+    <body class="js">
+        <!-- Header -->
+        @include('layouts.navigation')
 
-            <!-- Card Content -->
-            <div class="w-100 px-3" style="max-width: 28rem;">
-                <div class="card shadow">
-                    <div class="card-body p-4">
-                        {{ $slot }}
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- Page Content -->
+        <main>
+            {{ $slot }}
+        </main>
     </body>
 </html>
