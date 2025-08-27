@@ -18,21 +18,21 @@
 						<!-- Top Right -->
 						<div class="right-content">
 							<ul class="list-main">
-								<li><i class="ti-location-pin"></i> Store location</li>
-								<li><i class="ti-user"></i> <a href="{{ route('profile.edit') }}">My account</a></li>
+								<li><a href="https://maps.app.goo.gl/T6VH6xM3qneNVyR27"><i class="ti-location-pin"></i> Lokasi toko</a></li>
+								<li><i class="ti-user"></i> <a href="{{ route('profile.edit') }}"> Akun saya</a></li>
                                 @if (Auth::check())
                                     {{-- User sudah login, maka tampil tombol logout --}}
                                     <li>
                                         <form method="POST" action="{{ route('logout') }}" class="text-danger d-inline">
                                         @csrf
                                             <button type="submit" class="dropdown-item">
-                                            <i class="ti-power-off text-danger"></i>{{ __('Log Out') }}
+                                            <i class="ti-power-off text-danger"></i>{{ __('Keluar') }}
                                             </button>
                                         </form>
                                     </li>
                                 @else
                                     {{-- User belum login, maka tampil tombol login --}}
-								    <li><i class="ti-power-off"></i><a href="{{ route('login') }}">Login</a></li>
+								    <li><i class="ti-power-off"></i><a href="{{ route('login') }}"> Login</a></li>
                                 @endif
 							</ul>
 						</div>
@@ -82,16 +82,13 @@
 							<div class="sinlge-bar">
 								<a href="#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
 							</div>
-							<div class="sinlge-bar">
-								<a href="#" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
-							</div>
 							<div class="sinlge-bar shopping">
-								<a href="#" class="single-icon"><i class="ti-bag"></i> <span class="total-count">2</span></a>
+								<a href="{{ route('customer.cart') }}" class="single-icon"><i class="ti-bag"></i> <span class="total-count">2</span></a>
 								<!-- Shopping Item -->
 								<div class="shopping-item">
 									<div class="dropdown-cart-header">
 										<span>2 Items</span>
-										<a href="#">View Cart</a>
+										<a href="{{ route('customer.cart') }}">View Cart</a>
 									</div>
 									<ul class="shopping-list">
 										<li>
@@ -112,7 +109,7 @@
 											<span>Total</span>
 											<span class="total-amount">$134.00</span>
 										</div>
-										<a href="checkout.html" class="btn animate">Checkout</a>
+										<a href="{{ route('customer.checkout') }}" class="btn animate">Checkout</a>
 									</div>
 								</div>
 								<!--/ End Shopping Item -->
@@ -128,6 +125,7 @@
 				<div class="cat-nav-head">
 					<div class="row">
 						<div class="col-lg-3">
+							@if (Route::is('customer.index'))
 							<div class="all-category">
 								<h3 class="cat-heading"><i class="fa fa-bars" aria-hidden="true"></i>KATEGORI</h3>
 								<ul class="main-category">
@@ -169,6 +167,7 @@
 									</li>
 								</ul>
 							</div>
+							@endif
 						</div>
 						<div class="col-lg-9 col-12">
 							<div class="menu-area">
@@ -177,9 +176,8 @@
 									<div class="navbar-collapse">	
 										<div class="nav-inner">	
 											<ul class="nav main-menu menu navbar-nav">
-												<li class="active"><a href="index.html">Beranda</a></li>
-												<li><a href="about-us.html">Tentang Kami</a></li>												
-												<li><a href="contact.html">Kontak Kami</a></li>
+												<li class="active"><a href="{{ route('customer.index') }}">Beranda</a></li>
+												<li><a href="{{ route('customer.about-us') }}">Tentang Kami</a></li>	
 											</ul>
 										</div>
 									</div>

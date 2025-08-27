@@ -85,7 +85,7 @@
 						<!-- Start Single Product -->
 						<div class="single-product">
 							<div class="product-img">
-								<a href="product-details.html">
+								<a href="{{ route('customer.product-details') }}">
 									<img class="default-img" src="{{ asset('assets/images/products/tisukayu1.jpg') }}" alt="#">
 									<span class="out-of-stock">Out of Stock</span>
 								</a>
@@ -100,7 +100,7 @@
 								</div>
 							</div>
 							<div class="product-content">
-								<h3><a href="product-details.html">Tempat Tisu Kayu Jati</a></h3>
+								<h3><a href="{{ route('customer.product-details') }}">Tempat Tisu Kayu Jati</a></h3>
 								<div class="product-price">
 									<span>Rp135.000</span>
 								</div>
@@ -110,7 +110,7 @@
 						 <!-- Start Single Product -->
 						<div class="single-product">
 							<div class="product-img">
-								<a href="product-details.html">
+								<a href="{{ route('customer.product-details') }}">
 									<img class="default-img" src="images/products/bantal-segitiga.jpeg" alt="#">
 								</a>
 								<div class="button-head">
@@ -124,7 +124,7 @@
 								</div>
 							</div>
 							<div class="product-content">
-								<h3><a href="product-details.html">Bantal Segitiga Thailand Merah Biru</a></h3>
+								<h3><a href="{{ route('customer.product-details') }}">Bantal Segitiga Thailand Merah Biru</a></h3>
 								<div class="product-price">
 									<span>Rp135.000</span>
 								</div>
@@ -134,7 +134,7 @@
 						 <!-- Start Single Product -->
 						<div class="single-product">
 							<div class="product-img">
-								<a href="product-details.html">
+								<a href="{{ route('customer.product-details') }}">
 									<img class="default-img" src="images/products/bed-runner.jpg" alt="#">
 								</a>
 								<div class="button-head">
@@ -148,7 +148,7 @@
 								</div>
 							</div>
 							<div class="product-content">
-								<h3><a href="product-details.html">Bed Runner Etnik Gold</a></h3>
+								<h3><a href="{{ route('customer.product-details') }}">Bed Runner Etnik Gold</a></h3>
 								<div class="product-price">
 									<span>Rp135.000</span>
 								</div>
@@ -158,7 +158,7 @@
 						 <!-- Start Single Product -->
 						<div class="single-product">
 							<div class="product-img">
-								<a href="product-details.html">
+								<a href="{{ route('customer.product-details') }}">
 									<img class="default-img" src="images/products/tempat-sampah-kayu.jpg" alt="#">
 								</a>
 								<div class="button-head">
@@ -172,7 +172,7 @@
 								</div>
 							</div>
 							<div class="product-content">
-								<h3><a href="product-details.html">Tempat Sampah Kayu Jati</a></h3>
+								<h3><a href="{{ route('customer.product-details') }}">Tempat Sampah Kayu Jati</a></h3>
 								<div class="product-price">
 									<span>Rp135.000</span>
 								</div>
@@ -182,7 +182,7 @@
 						 <!-- Start Single Product -->
 						<div class="single-product">
 							<div class="product-img">
-								<a href="product-details.html">
+								<a href="{{ route('customer.product-details') }}">
 									<img class="default-img" src="images/products/banneton.jpg" alt="#">
 								</a>
 								<div class="button-head">
@@ -196,7 +196,7 @@
 								</div>
 							</div>
 							<div class="product-content">
-								<h3><a href="product-details.html">Banneton Oval Proofing</a></h3>
+								<h3><a href="{{ route('customer.product-details') }}">Banneton Oval Proofing</a></h3>
 								<div class="product-price">
 									<span>Rp135.000</span>
 								</div>
@@ -243,7 +243,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 														</a>
@@ -259,7 +259,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Women Hot Collection</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Women Hot Collection</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -269,7 +269,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 														</a>
@@ -285,7 +285,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Awesome Pink Show</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Awesome Pink Show</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -295,7 +295,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 														</a>
@@ -311,7 +311,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Awesome Bags Collection</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Awesome Bags Collection</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -321,7 +321,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 															<span class="new">New</span>
@@ -338,7 +338,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Women Pant Collectons</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Women Pant Collectons</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -348,7 +348,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 														</a>
@@ -364,7 +364,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Awesome Bags Collection</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Awesome Bags Collection</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -374,7 +374,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 															<span class="price-dec">30% Off</span>
@@ -391,7 +391,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Awesome Cap For Women</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Awesome Cap For Women</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -401,7 +401,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 														</a>
@@ -417,7 +417,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Polo Dress For Women</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Polo Dress For Women</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -427,7 +427,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 															<span class="out-of-stock">Hot</span>
@@ -444,7 +444,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Black Sunglass For Women</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Black Sunglass For Women</a></h3>
 														<div class="product-price">
 															<span class="old">$60.00</span>
 															<span>$50.00</span>
@@ -463,7 +463,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 														</a>
@@ -479,7 +479,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Women Hot Collection</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Women Hot Collection</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -489,7 +489,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 														</a>
@@ -505,7 +505,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Awesome Pink Show</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Awesome Pink Show</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -515,7 +515,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 														</a>
@@ -531,7 +531,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Awesome Bags Collection</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Awesome Bags Collection</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -541,7 +541,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 															<span class="new">New</span>
@@ -558,7 +558,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Women Pant Collectons</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Women Pant Collectons</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -568,7 +568,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 														</a>
@@ -584,7 +584,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Awesome Bags Collection</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Awesome Bags Collection</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -594,7 +594,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 															<span class="price-dec">30% Off</span>
@@ -611,7 +611,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Awesome Cap For Women</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Awesome Cap For Women</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -621,7 +621,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 														</a>
@@ -637,7 +637,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Polo Dress For Women</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Polo Dress For Women</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -647,7 +647,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 															<span class="out-of-stock">Hot</span>
@@ -664,7 +664,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Black Sunglass For Women</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Black Sunglass For Women</a></h3>
 														<div class="product-price">
 															<span class="old">$60.00</span>
 															<span>$50.00</span>
@@ -683,7 +683,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 														</a>
@@ -699,7 +699,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Women Hot Collection</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Women Hot Collection</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -709,7 +709,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 														</a>
@@ -725,7 +725,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Awesome Pink Show</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Awesome Pink Show</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -735,7 +735,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 														</a>
@@ -751,7 +751,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Awesome Bags Collection</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Awesome Bags Collection</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -761,7 +761,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 															<span class="new">New</span>
@@ -778,7 +778,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Women Pant Collectons</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Women Pant Collectons</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -788,7 +788,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 														</a>
@@ -804,7 +804,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Awesome Bags Collection</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Awesome Bags Collection</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -814,7 +814,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 															<span class="price-dec">30% Off</span>
@@ -831,7 +831,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Awesome Cap For Women</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Awesome Cap For Women</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -841,7 +841,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 														</a>
@@ -857,7 +857,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Polo Dress For Women</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Polo Dress For Women</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -867,7 +867,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 															<span class="out-of-stock">Hot</span>
@@ -884,7 +884,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Black Sunglass For Women</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Black Sunglass For Women</a></h3>
 														<div class="product-price">
 															<span class="old">$60.00</span>
 															<span>$50.00</span>
@@ -903,7 +903,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 														</a>
@@ -919,7 +919,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Women Hot Collection</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Women Hot Collection</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -929,7 +929,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 														</a>
@@ -945,7 +945,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Awesome Pink Show</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Awesome Pink Show</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -955,7 +955,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 														</a>
@@ -971,7 +971,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Awesome Bags Collection</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Awesome Bags Collection</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -981,7 +981,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 															<span class="new">New</span>
@@ -998,7 +998,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Women Pant Collectons</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Women Pant Collectons</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -1008,7 +1008,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 														</a>
@@ -1024,7 +1024,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Awesome Bags Collection</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Awesome Bags Collection</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -1034,7 +1034,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 															<span class="price-dec">30% Off</span>
@@ -1051,7 +1051,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Awesome Cap For Women</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Awesome Cap For Women</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -1061,7 +1061,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 														</a>
@@ -1077,7 +1077,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Polo Dress For Women</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Polo Dress For Women</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -1087,7 +1087,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 															<span class="out-of-stock">Hot</span>
@@ -1104,7 +1104,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Black Sunglass For Women</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Black Sunglass For Women</a></h3>
 														<div class="product-price">
 															<span class="old">$60.00</span>
 															<span>$50.00</span>
@@ -1123,7 +1123,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 														</a>
@@ -1139,7 +1139,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Women Hot Collection</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Women Hot Collection</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -1149,7 +1149,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 														</a>
@@ -1165,7 +1165,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Awesome Pink Show</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Awesome Pink Show</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -1175,7 +1175,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 														</a>
@@ -1191,7 +1191,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Awesome Bags Collection</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Awesome Bags Collection</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -1201,7 +1201,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 															<span class="new">New</span>
@@ -1218,7 +1218,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Women Pant Collectons</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Women Pant Collectons</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -1228,7 +1228,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 														</a>
@@ -1244,7 +1244,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Awesome Bags Collection</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Awesome Bags Collection</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -1254,7 +1254,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 															<span class="price-dec">30% Off</span>
@@ -1271,7 +1271,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Awesome Cap For Women</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Awesome Cap For Women</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -1281,7 +1281,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 														</a>
@@ -1297,7 +1297,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Polo Dress For Women</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Polo Dress For Women</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -1307,7 +1307,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 															<span class="out-of-stock">Hot</span>
@@ -1324,7 +1324,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Black Sunglass For Women</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Black Sunglass For Women</a></h3>
 														<div class="product-price">
 															<span class="old">$60.00</span>
 															<span>$50.00</span>
@@ -1343,7 +1343,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 														</a>
@@ -1359,7 +1359,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Women Hot Collection</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Women Hot Collection</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -1369,7 +1369,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 														</a>
@@ -1385,7 +1385,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Awesome Pink Show</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Awesome Pink Show</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -1395,7 +1395,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 														</a>
@@ -1411,7 +1411,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Awesome Bags Collection</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Awesome Bags Collection</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -1421,7 +1421,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 															<span class="new">New</span>
@@ -1438,7 +1438,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Women Pant Collectons</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Women Pant Collectons</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -1448,7 +1448,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 														</a>
@@ -1464,7 +1464,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Awesome Bags Collection</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Awesome Bags Collection</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -1474,7 +1474,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 															<span class="price-dec">30% Off</span>
@@ -1491,7 +1491,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Awesome Cap For Women</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Awesome Cap For Women</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -1501,7 +1501,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 														</a>
@@ -1517,7 +1517,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Polo Dress For Women</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Polo Dress For Women</a></h3>
 														<div class="product-price">
 															<span>$29.00</span>
 														</div>
@@ -1527,7 +1527,7 @@
 											<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="product-details.html">
+														<a href="{{ route('customer.product-details') }}">
 															<img class="default-img" src="https://placehold.co/550x750" alt="#">
 															<img class="hover-img" src="https://placehold.co/550x750" alt="#">
 															<span class="out-of-stock">Hot</span>
@@ -1544,7 +1544,7 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="product-details.html">Black Sunglass For Women</a></h3>
+														<h3><a href="{{ route('customer.product-details') }}">Black Sunglass For Women</a></h3>
 														<div class="product-price">
 															<span class="old">$60.00</span>
 															<span>$50.00</span>

@@ -1,3 +1,10 @@
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="fw-semibold fs-4 text-dark">
+            {{ __('Cart') }}
+        </h2>
+    </x-slot>
+
 	<!-- Breadcrumbs -->
 	<div class="breadcrumbs">
 		<div class="container">
@@ -24,12 +31,12 @@
 					<table class="table shopping-summery">
 						<thead>
 							<tr class="main-hading">
-								<th>PRODUCT</th>
-								<th>NAME</th>
-								<th class="text-center">UNIT PRICE</th>
-								<th class="text-center">QUANTITY</th>
-								<th class="text-center">TOTAL</th> 
-								<th class="text-center"><i class="ti-trash remove-icon"></i></th>
+								<th class="text-center text-dark">FOTO</th>
+								<th class="text-center text-dark">PRODUK</th>
+								<th class="text-center text-dark">HARGA</th>
+								<th class="text-center text-dark">KUANTITAS</th>
+								<th class="text-center text-dark">TOTAL</th> 
+								<th class="text-center text-dark">HAPUS</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -143,8 +150,8 @@
 										<li class="last">You Pay<span>$310.00</span></li>
 									</ul>
 									<div class="button5">
-										<a href="#" class="btn">Checkout</a>
-										<a href="#" class="btn">Continue shopping</a>
+										<a href="{{ route('customer.checkout') }}" class="btn btn-dark text-white w-100">Checkout</a>
+										<a href="{{ route('customer.index') }}" class="btn btn-light text-dark w-100">Lanjut Belanja</a>
 									</div>
 								</div>
 							</div>
@@ -156,3 +163,4 @@
 		</div>
 	</div>
 	<!--/ End Shopping Cart -->
+</x-app-layout>
