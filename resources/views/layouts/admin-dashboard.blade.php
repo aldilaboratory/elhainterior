@@ -1,8 +1,4 @@
-@extends('layouts.admin-layout')
-
-@section('content')
-      <!-- ========== section start ========== -->
-      <section class="section">
+<section class="section">
         <div class="container-fluid">
           <!-- ========== title-wrapper start ========== -->
           <div class="title-wrapper pt-30">
@@ -742,5 +738,3 @@
         </div>
         <!-- end container -->
       </section>
-      <!-- ========== section end ========== -->
-@endsection
