@@ -70,8 +70,12 @@
                   <td>{{ $admin->email }}</td>
                   <td>{{ $admin->role }}</td>
                   <td>
-                    <a class="btn btn-info btn-sm text-white"><i class="mdi mdi-pencil"></i> Edit</a>
-                    <a class="btn btn-danger btn-sm text-white"><i class="mdi mdi-delete"></i> Hapus</a>
+                    <a href="{{ route('admin.data-admin.edit', $admin->id) }}" class="btn btn-info btn-sm text-white"><i class="mdi mdi-pencil"></i> Edit</a>
+                    <form id="delete-form-{{ $admin->id }}" action="{{ route('admin.data-admin.destroy', $admin->id) }}" method="POST" class="d-inline">
+                      @csrf
+                      @method('DELETE')
+                      <button type="button" data-id="{{ $admin->id }}" data-name="{{ $admin->name }}" class="btn btn-danger btn-sm text-white delete-btn"><i class="mdi mdi-delete"></i> Hapus</button>
+                    </form>
                   </td>
                 </tr>
               @empty

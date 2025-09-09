@@ -30,7 +30,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::resource('subcategories', SubcategoryController::class);
     Route::resource('sales-report', SalesReportController::class);
     Route::resource('stocks-report', StocksReportController::class);
-    Route::resource('data-admin', DataAdminController::class);
+    Route::resource('data-admin', DataAdminController::class)->parameters(['data-admin' => 'id']);
     Route::resource('data-customer', DataCustomerController::class);
 });
 

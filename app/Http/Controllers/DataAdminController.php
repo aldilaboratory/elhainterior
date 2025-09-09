@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreAdminRequest;
+use App\Http\Requests\UpdateAdminRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class DataAdminController extends Controller
 {
@@ -12,7 +15,9 @@ class DataAdminController extends Controller
      */
     public function index()
     {
-        $admins = User::where('role', 'admin')->get();
+        $admins = User::where('role', 'admin')
+                    ->orWhere('role', 'owner')
+                    ->get();
         
         return view('admin.admins.index', compact('admins'));
     }
@@ -28,9 +33,15 @@ class DataAdminController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreAdminRequest $request)
     {
-        //
+        $data = $request->validated();
+        $data['password'] = Hash::make($data['password']);
+
+        User::create($data);
+
+        return to_route('admin.data-admin.index')
+            ->with('success', 'Admin berhasil ditambahkan.');
     }
 
     /**
@@ -46,15 +57,29 @@ class DataAdminController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $admin = User::findOrFail($id);
+        
+        return view('admin.admins.edit', compact('admin'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateAdminRequest $request, $id)
     {
-        //
+        $admin = User::findOrFail($id);
+        $data  = $request->validated();
+
+        if (!empty($data['password'])) {
+            $data['password'] = Hash::make($data['password']);
+        } else {
+            unset($data['password']); // jangan overwrite jika kosong
+        }
+
+        $admin->update($data);
+
+        return to_route('admin.data-admin.index')
+            ->with('success', 'Data berhasil diperbarui.');
     }
 
     /**
@@ -62,6 +87,14 @@ class DataAdminController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $admin = User::findOrFail($id);
+
+        if (auth()->id() === $admin->id) {
+            return back()->with('error', 'Anda tidak dapat menghapus akun Anda sendiri.');
+        }
+
+        $admin->delete();
+
+        return back()->with('success', 'Data berhasil dihapus.');
     }
 }
