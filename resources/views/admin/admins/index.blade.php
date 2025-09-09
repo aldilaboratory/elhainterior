@@ -55,7 +55,7 @@
           <table class="table table-hover">
             <thead class="table-light">
               <tr>
-                <th style="width:36px;" class="text-center">#</th>
+                <th class="text-center">#</th>
                 <th>Nama Admin</th>
                 <th>Role</th>
                 <th>Aksi</th>

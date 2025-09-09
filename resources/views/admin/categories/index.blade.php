@@ -55,7 +55,7 @@
           <table class="table table-hover">
             <thead class="table-light">
               <tr>
-                <th style="width:36px;" class="text-center">#</th>
+                <th class="text-center">#</th>
                 <th>Nama Kategori</th>
                 <th>Nama Sub Kategori</th>
                 <th>Aksi</th>

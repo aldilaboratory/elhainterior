@@ -48,7 +48,7 @@
           <table class="table table-hover">
             <thead class="table-light">
               <tr>
-                <th style="width:36px;" class="text-center">#</th>
+                <th class="text-center">#</th>
                 <th>Nama Pelanggan</th>
                 <th>Email</th>
                 <th>Aksi</th>
