@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DataAdminController;
+use App\Http\Controllers\DataCustomerController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -28,6 +30,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::resource('subcategories', SubcategoryController::class);
     Route::resource('sales-report', SalesReportController::class);
     Route::resource('stocks-report', StocksReportController::class);
+    Route::resource('data-admin', DataAdminController::class);
+    Route::resource('data-customer', DataCustomerController::class);
 });
 
 // Route Customer
