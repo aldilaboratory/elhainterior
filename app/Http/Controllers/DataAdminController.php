@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DataAdminController extends Controller
@@ -11,7 +12,9 @@ class DataAdminController extends Controller
      */
     public function index()
     {
-        return view('admin.admins.index');
+        $admins = User::where('role', 'admin')->get();
+        
+        return view('admin.admins.index', compact('admins'));
     }
 
     /**
@@ -19,7 +22,7 @@ class DataAdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.admins.create');
     }
 
     /**

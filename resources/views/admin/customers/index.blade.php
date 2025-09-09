@@ -55,37 +55,21 @@
               </tr>
             </thead>
             <tbody>
-              <!-- Row 1 -->
-              <tr>
-                <td class="text-center">1</td>
-                <td>Ahmad Putra</td>
-                <td>user@gmail.com</td>
-                <td>
-                  <a class="btn btn-danger btn-sm text-white"><i class="mdi mdi-delete"></i> Hapus</a>
-                </td>
+              @forelse ($customers as $customer)
+                <tr>
+                  <td class="text-center">{{ $loop->iteration }}</td>
+                  <td>{{ $customer->name }}</td>
+                  <td>{{ $customer->email }}</td>
+                  <td>
+                    <a class="btn btn-danger btn-sm text-white"><i class="mdi mdi-delete"></i> Hapus</a>
+                  </td>
+                </tr>
+              @empty
+                <tr>
+                  <td colspan="4" class="text-center">Tidak ada data</td>
+                </tr>
+              @endforelse
               </tr>
-
-              <!-- Row 2 -->
-              <tr>
-                <td class="text-center">2</td>
-                <td>Budi Utomo</td>
-                <td>user@gmail.com</td>
-                <td>
-                  <a class="btn btn-danger btn-sm text-white"><i class="mdi mdi-delete"></i> Hapus</a>
-                </td>
-              </tr>
-
-              <!-- Row 3 -->
-              <tr>
-                <td class="text-center">3</td>
-                <td>Sefia</td>
-                <td>user@gmail.com</td>
-                <td>
-                  <a class="btn btn-danger btn-sm text-white"><i class="mdi mdi-delete"></i> Hapus</a>
-                </td>
-              </tr>
-
-              <!-- Tambahkan baris lain sesuai kebutuhan -->
             </tbody>
           </table>
         </div>

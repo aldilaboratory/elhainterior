@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DataCustomerController extends Controller
@@ -11,7 +12,9 @@ class DataCustomerController extends Controller
      */
     public function index()
     {
-        return view('admin.customers.index');
+        $customers = User::where('role', 'customer')->get();
+        
+        return view('admin.customers.index', compact('customers'));
     }
 
     /**

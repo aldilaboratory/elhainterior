@@ -36,7 +36,7 @@
       <!-- Header actions -->
       <div class="d-flex justify-content-between align-items-center mb-3">
         <div class="d-flex gap-2">
-          <button class="btn btn-primary"><i class="bi bi-plus-lg me-1"></i>+ Tambah admin baru</button>
+          <a href="{{ route('admin.data-admin.create') }}" class="btn btn-primary"><i class="bi bi-plus-lg me-1"></i>+ Tambah admin baru</a>
         </div>
       </div>
 
@@ -57,45 +57,28 @@
               <tr>
                 <th class="text-center">#</th>
                 <th>Nama Admin</th>
+                <th>Email</th>
                 <th>Role</th>
                 <th>Aksi</th>
               </tr>
             </thead>
             <tbody>
-              <!-- Row 1 -->
-              <tr>
-                <td class="text-center">1</td>
-                <td>Ahmad Putra</td>
-                <td>Admin</td>
-                <td>
-                  <a class="btn btn-info btn-sm text-white"><i class="mdi mdi-pencil"></i> Edit</a>
-                  <a class="btn btn-danger btn-sm text-white"><i class="mdi mdi-delete"></i> Hapus</a>
-                </td>
-              </tr>
-
-              <!-- Row 2 -->
-              <tr>
-                <td class="text-center">2</td>
-                <td>Budi Utomo</td>
-                <td>Owner</td>
-                <td>
-                  <a class="btn btn-info btn-sm text-white"><i class="mdi mdi-pencil"></i> Edit</a>
-                  <a class="btn btn-danger btn-sm text-white"><i class="mdi mdi-delete"></i> Hapus</a>
-                </td>
-              </tr>
-
-              <!-- Row 3 -->
-              <tr>
-                <td class="text-center">3</td>
-                <td>Sefia</td>
-                <td>Admin</td>
-                <td>
-                  <a class="btn btn-info btn-sm text-white"><i class="mdi mdi-pencil"></i> Edit</a>
-                  <a class="btn btn-danger btn-sm text-white"><i class="mdi mdi-delete"></i> Hapus</a>
-                </td>
-              </tr>
-
-              <!-- Tambahkan baris lain sesuai kebutuhan -->
+              @forelse ($admins as $admin)
+                <tr>
+                  <td class="text-center">{{ $loop->iteration }}</td>
+                  <td>{{ $admin->name }}</td>
+                  <td>{{ $admin->email }}</td>
+                  <td>{{ $admin->role }}</td>
+                  <td>
+                    <a class="btn btn-info btn-sm text-white"><i class="mdi mdi-pencil"></i> Edit</a>
+                    <a class="btn btn-danger btn-sm text-white"><i class="mdi mdi-delete"></i> Hapus</a>
+                  </td>
+                </tr>
+              @empty
+                <tr>
+                  <td colspan="5" class="text-center">Tidak ada data</td>
+                </tr>
+              @endforelse
             </tbody>
           </table>
         </div>
