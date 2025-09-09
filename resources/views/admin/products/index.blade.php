@@ -66,7 +66,7 @@
           <table class="table table-hover">
             <thead class="table-light">
               <tr>
-                <th class="text-center">#</th>
+                <th style="width:36px;" class="text-center">#</th>
                 <th>Nama Produk</th>
                 <th>Harga</th>
                 <th>Kategori</th>
