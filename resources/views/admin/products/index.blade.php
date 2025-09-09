@@ -63,92 +63,89 @@
       <!-- Table -->
       <div class="card shadow-sm">
         <div class="card-body p-0">
-          <table class="table table-hover mb-0">
+          <table class="table table-hover">
             <thead class="table-light">
               <tr>
-                <th style="width:36px;"><input class="form-check-input" type="checkbox"></th>
-                <th>Product name</th>
-                <th style="width:120px;">Price</th>
-                <th style="width:140px;">Category</th>
-                <th>Tags</th>
-                <th style="width:220px;">Vendor</th>
-                <th style="width:170px;">Published on</th>
+                <th style="width:36px;" class="text-center">#</th>
+                <th>Nama Produk</th>
+                <th>Harga</th>
+                <th>Kategori</th>
+                <th>Sub Kategori</th>
+                <th>Vendor</th>
+                <th>Aksi</th>
               </tr>
             </thead>
             <tbody>
               <!-- Row 1 -->
               <tr>
-                <td><input class="form-check-input" type="checkbox"></td>
+                <td class="text-center">1</td>
                 <td>
                   <div class="d-flex align-items-center gap-3">
-                    <img class="prod-thumb" src="https://via.placeholder.com/80x80.png?text=Watch" alt="">
+                    <img class="prod-thumb" src="https://placehold.co/80x80" alt="">
                     <a href="#" class="fw-semibold text-decoration-none">Fitbit Sense Advanced Smartwatch with Tools...</a>
                   </div>
                 </td>
                 <td>$39</td>
                 <td>Plants</td>
-                <td class="text-nowrap">
-                  <span class="badge rounded-pill tag-badge me-1">HEALTH</span>
-                  <span class="badge rounded-pill tag-badge me-1">EXERCISE</span>
-                  <span class="badge rounded-pill tag-badge me-1">FITNESS</span>
-                </td>
+                <td>Rose</td>
                 <td>
                   <div class="d-flex align-items-center gap-2">
                     <button class="btn btn-sm btn-link text-warning p-0"><i class="bi bi-star"></i></button>
                     <a href="#" class="link-primary">Blue Olive Plant sellers. Inc</a>
                   </div>
                 </td>
-                <td>Nov 12, 10:45 PM</td>
+                <td>
+                  <a class="btn btn-info btn-sm text-white"><i class="mdi mdi-pencil"></i> Edit</a>
+                  <a class="btn btn-danger btn-sm text-white"><i class="mdi mdi-delete"></i> Hapus</a>
+                </td>
               </tr>
 
               <!-- Row 2 -->
               <tr>
-                <td><input class="form-check-input" type="checkbox"></td>
+                <td class="text-center">2</td>
                 <td>
                   <div class="d-flex align-items-center gap-3">
-                    <img class="prod-thumb" src="https://via.placeholder.com/80x80.png?text=Phone" alt="">
+                    <img class="prod-thumb" src="https://placehold.co/80x80" alt="">
                     <a href="#" class="fw-semibold text-decoration-none">iPhone 13 pro max-Pacific Blue-128GB storage</a>
                   </div>
                 </td>
                 <td>$87</td>
                 <td>Furniture</td>
-                <td class="text-nowrap">
-                  <span class="badge rounded-pill tag-badge me-1">PRO</span>
-                  <span class="badge rounded-pill tag-badge me-1">CAMERA</span>
-                  <span class="badge rounded-pill tag-badge me-1">SWAG</span>
-                </td>
+                <td>Sofa</td>
                 <td>
                   <div class="d-flex align-items-center gap-2">
                     <button class="btn btn-sm btn-link text-warning p-0"><i class="bi bi-star-fill"></i></button>
                     <a href="#" class="link-primary">Beatrice Furnitures</a>
                   </div>
                 </td>
-                <td>Nov 11, 7:36 PM</td>
+                <td>
+                  <a class="btn btn-info btn-sm text-white"><i class="mdi mdi-pencil"></i> Edit</a>
+                  <a class="btn btn-danger btn-sm text-white"><i class="mdi mdi-delete"></i> Hapus</a>
+                </td>
               </tr>
 
               <!-- Row 3 -->
               <tr>
-                <td><input class="form-check-input" type="checkbox"></td>
+                <td class="text-center">3</td>
                 <td>
                   <div class="d-flex align-items-center gap-3">
-                    <img class="prod-thumb" src="https://via.placeholder.com/80x80.png?text=MBP" alt="">
+                    <img class="prod-thumb" src="https://placehold.co/80x80" alt="">
                     <a href="#" class="fw-semibold text-decoration-none">Apple MacBook Pro 13 inch-M1-8/256GB-space</a>
                   </div>
                 </td>
                 <td>$9</td>
                 <td>Plants</td>
-                <td class="text-nowrap">
-                  <span class="badge rounded-pill tag-badge me-1">EFFICIENCY</span>
-                  <span class="badge rounded-pill tag-badge me-1">APPLE</span>
-                  <span class="badge rounded-pill tag-badge me-1">HANDY</span>
-                </td>
+                <td>Tulip</td>
                 <td>
                   <div class="d-flex align-items-center gap-2">
                     <button class="btn btn-sm btn-link text-warning p-0"><i class="bi bi-star"></i></button>
                     <a href="#" class="link-primary">PlantPlanet</a>
                   </div>
                 </td>
-                <td>Nov 11, 8:16 AM</td>
+                <td>
+                  <a class="btn btn-info btn-sm text-white"><i class="mdi mdi-pencil"></i> Edit</a>
+                  <a class="btn btn-danger btn-sm text-white"><i class="mdi mdi-delete"></i> Hapus</a>
+                </td>
               </tr>
 
               <!-- Tambahkan baris lain sesuai kebutuhan -->
