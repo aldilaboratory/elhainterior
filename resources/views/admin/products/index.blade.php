@@ -36,7 +36,7 @@
       <!-- Header actions -->
       <div class="d-flex justify-content-between align-items-center mb-3">
         <div class="d-flex gap-2">
-          <button class="btn btn-primary"><i class="bi bi-plus-lg me-1"></i>+ Tambah produk baru</button>
+          <button class="btn btn-primary">+ Tambah produk baru</button>
         </div>
       </div>
 

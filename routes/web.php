@@ -26,8 +26,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
     Route::resource('orders', OrderController::class);
     Route::resource('products', ProductController::class);
-    Route::resource('categories', CategoryController::class);
-    Route::resource('subcategories', SubcategoryController::class);
+    Route::resource('categories', CategoryController::class)->parameters(['categories' => 'id']);
+    Route::resource('subcategories', SubcategoryController::class)->parameters(['subcategories' => 'id']);
     Route::resource('sales-report', SalesReportController::class);
     Route::resource('stocks-report', StocksReportController::class);
     Route::resource('data-admin', DataAdminController::class)->parameters(['data-admin' => 'id']);
