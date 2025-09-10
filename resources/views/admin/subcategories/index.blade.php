@@ -55,17 +55,17 @@
           <table class="table table-hover">
             <thead class="table-light">
               <tr>
-                <th style="width:36px;" class="text-center">#</th>
-                <th>Nama Sub Kategori</th>
-                <th>Aksi</th>
+                <th class="text-center px-2">#</th>
+                <th class="px-2">Nama Sub Kategori</th>
+                <th class="px-2">Aksi</th>
               </tr>
             </thead>
             <tbody>
               <!-- Row 1 -->
               <tr>
-                <td class="text-center">1</td>
-                <td>Peralatan Dapur</td>
-                <td>
+                <td class="text-center px-2">1</td>
+                <td class="px-2">Peralatan Dapur</td>
+                <td class="px-2">
                   <a class="btn btn-info btn-sm text-white"><i class="mdi mdi-pencil"></i> Edit</a>
                   <a class="btn btn-danger btn-sm text-white"><i class="mdi mdi-delete"></i> Hapus</a>
                 </td>
@@ -73,9 +73,9 @@
 
               <!-- Row 2 -->
               <tr>
-                <td class="text-center">2</td>
-                <td>Peralatan Dapur</td>
-                <td>
+                <td class="text-center px-2">2</td>
+                <td class="px-2">Peralatan Dapur</td>
+                <td class="px-2">
                   <a class="btn btn-info btn-sm text-white"><i class="mdi mdi-pencil"></i> Edit</a>
                   <a class="btn btn-danger btn-sm text-white"><i class="mdi mdi-delete"></i> Hapus</a>
                 </td>
@@ -83,9 +83,9 @@
 
               <!-- Row 3 -->
               <tr>
-                <td class="text-center">3</td>
-                <td>Peralatan Dapur</td>
-                <td>
+                <td class="text-center px-2">3</td>
+                <td class="px-2">Peralatan Dapur</td>
+                <td class="px-2">
                   <a class="btn btn-info btn-sm text-white"><i class="mdi mdi-pencil"></i> Edit</a>
                   <a class="btn btn-danger btn-sm text-white"><i class="mdi mdi-delete"></i> Hapus</a>
                 </td>

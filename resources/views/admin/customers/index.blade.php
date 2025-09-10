@@ -48,19 +48,19 @@
           <table class="table table-hover">
             <thead class="table-light">
               <tr>
-                <th class="text-center">#</th>
-                <th>Nama Pelanggan</th>
-                <th>Email</th>
-                <th>Aksi</th>
+                <th class="text-center px-2">#</th>
+                <th class="px-2">Nama Pelanggan</th>
+                <th class="px-2">Email</th>
+                <th class="px-2">Aksi</th>
               </tr>
             </thead>
             <tbody>
               @forelse ($customers as $customer)
                 <tr>
-                  <td class="text-center">{{ $loop->iteration }}</td>
-                  <td>{{ $customer->name }}</td>
-                  <td>{{ $customer->email }}</td>
-                  <td>
+                  <td class="text-center px-2">{{ $loop->iteration }}</td>
+                  <td class="px-2">{{ $customer->name }}</td>
+                  <td class="px-2">{{ $customer->email }}</td>
+                  <td class="px-2">
                     <a class="btn btn-danger btn-sm text-white"><i class="mdi mdi-delete"></i> Hapus</a>
                   </td>
                 </tr>

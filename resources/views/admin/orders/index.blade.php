@@ -57,42 +57,42 @@
           <table class="table table-hover align-middle">
             <thead class="table-light">
               <tr>
-                <th class="text-center">Order</th>
-                <th>Total</th>
-                <th>Customer</th>
-                <th>Status Pembayaran</th>
-                <th>Status Pesanan</th>
-                <th>Metode Pembayaran</th>
-                <th>Tanggal</th>
+                <th class="text-center px-2">Order</th>
+                <th class="px-2">Total</th>
+                <th class="px-2">Customer</th>
+                <th class="px-2">Status Pembayaran</th>
+                <th class="px-2">Status Pesanan</th>
+                <th class="px-2">Metode Pembayaran</th>
+                <th class="px-2">Tanggal</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td class="text-center"><a href="#">#2453</a></td>
-                <td>$87</td>
-                <td>Carry Anna</td>
-                <td><span class="badge bg-success">Complete</span></td>
-                <td><span class="badge bg-secondary">Cancelled</span></td>
-                <td>BCA</td>
-                <td>Dec 12, 12:56 PM</td>
+                <td class="text-center px-2"><a href="#">#2453</a></td>
+                <td class="px-2">$87</td>
+                <td class="px-2">Carry Anna</td>
+                <td class="px-2"><span class="badge bg-success">Complete</span></td>
+                <td class="px-2"><span class="badge bg-secondary">Cancelled</span></td>
+                <td class="px-2">BCA</td>
+                <td class="px-2">Dec 12, 12:56 PM</td>
               </tr>
               <tr>
-                <td class="text-center"><a href="#">#2453</a></td>
-                <td>$7264</td>
-                <td>Milind Mikuja</td>
-                <td><span class="badge bg-danger">Cancelled</span></td>
-                <td><span class="badge bg-info text-dark">Ready to Pickup</span></td>
-                <td>GoPay</td>
-                <td>Dec 9, 2:28 PM</td>
+                <td class="text-center px-2"><a href="#">#2453</a></td>
+                <td class="px-2">$7264</td>
+                <td class="px-2">Milind Mikuja</td>
+                <td class="px-2"><span class="badge bg-danger">Cancelled</span></td>
+                <td class="px-2"><span class="badge bg-info text-dark">Ready to Pickup</span></td>
+                <td class="px-2">GoPay</td>
+                <td class="px-2">Dec 9, 2:28 PM</td>
               </tr>
               <tr>
-                <td class="text-center"><a href="#">#2453</a></td>
-                <td>$375</td>
-                <td>Stanly Drinkwater</td>
-                <td><span class="badge bg-warning text-dark">Pending</span></td>
-                <td><span class="badge bg-success">Completed</span></td>
-                <td>ShopeePay</td>
-                <td>Dec 4, 12:56 PM</td>
+                <td class="text-center px-2"><a href="#">#2453</a></td>
+                <td class="px-2">$375</td>
+                <td class="px-2">Stanly Drinkwater</td>
+                <td class="px-2"><span class="badge bg-warning text-dark">Pending</span></td>
+                <td class="px-2"><span class="badge bg-success">Completed</span></td>
+                <td class="px-2">ShopeePay</td>
+                <td class="px-2">Dec 4, 12:56 PM</td>
               </tr>
               <!-- Tambahkan data lainnya sesuai kebutuhan -->
             </tbody>

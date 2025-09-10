@@ -55,21 +55,21 @@
           <table class="table table-hover">
             <thead class="table-light">
               <tr>
-                <th class="text-center">#</th>
-                <th>Nama Admin</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Aksi</th>
+                <th class="text-center px-2">#</th>
+                <th class="px-2">Nama Admin</th>
+                <th class="px-2">Email</th>
+                <th class="px-2">Role</th>
+                <th class="px-2">Aksi</th>
               </tr>
             </thead>
             <tbody>
               @forelse ($admins as $admin)
                 <tr>
-                  <td class="text-center">{{ $loop->iteration }}</td>
-                  <td>{{ $admin->name }}</td>
-                  <td>{{ $admin->email }}</td>
-                  <td>{{ $admin->role }}</td>
-                  <td>
+                  <td class="text-center px-2">{{ $loop->iteration }}</td>
+                  <td class="px-2">{{ $admin->name }}</td>
+                  <td class="px-2">{{ $admin->email }}</td>
+                  <td class="px-2">{{ $admin->role }}</td>
+                  <td class="px-2">
                     <a href="{{ route('admin.data-admin.edit', $admin->id) }}" class="btn btn-info btn-sm text-white"><i class="mdi mdi-pencil"></i> Edit</a>
                     <form id="delete-form-{{ $admin->id }}" action="{{ route('admin.data-admin.destroy', $admin->id) }}" method="POST" class="d-inline">
                       @csrf
