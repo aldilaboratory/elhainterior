@@ -8,7 +8,7 @@
             <div class="col-12 col-sm-10 col-md-8 col-lg-5">
                 <div class="card shadow-sm border-0">
                     <div class="card-header bg-white border-0">
-                        <h4 class="mb-0">{{ __('Log in') }}</h4>
+                        <h4 class="mb-0 text-center">{{ __('Log in') }}</h4>
                     </div>
 
                     <div class="card-body">
@@ -50,7 +50,7 @@
                             </div>
 
                             {{-- Remember Me --}}
-                            <div class="form-check mb-3">
+                            <div class="form-check">
                                 <input
                                     class="form-check-input"
                                     type="checkbox"
@@ -58,7 +58,7 @@
                                     name="remember"
                                     {{ old('remember') ? 'checked' : '' }}
                                 >
-                                <label class="form-check-label" for="remember_me">
+                                <label class="" for="remember_me">
                                     {{ __('Remember me') }}
                                 </label>
                             </div>
@@ -66,7 +66,7 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 @if (Route::has('password.request'))
                                     <a class="small text-decoration-none" href="{{ route('password.request') }}">
-                                        {{ __('Forgot your password?') }}
+                                        {{ __('Lupa password?') }}
                                     </a>
                                 @endif
 
@@ -78,9 +78,9 @@
                     </div>
 
                     {{-- Optional footer (mis. link registrasi) --}}
-                    {{-- <div class="card-footer bg-white text-center">
+                    <div class="card-footer bg-white text-center">
                         <small class="text-muted">Belum punya akun? <a href="{{ route('register') }}">Daftar</a></small>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
         </div>
