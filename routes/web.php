@@ -12,10 +12,6 @@ use App\Http\Controllers\StocksReportController;
 use App\Http\Controllers\SubcategoryController;
 use Illuminate\Support\Facades\Route;
 
-
-
-
-
 // Route admin
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     // Route untuk Dashboard
@@ -25,7 +21,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('orders', OrderController::class);
-    Route::resource('products', ProductController::class);
+    Route::resource('products', ProductController::class)->parameters(['products' => 'id']);
     Route::resource('categories', CategoryController::class)->parameters(['categories' => 'id']);
     Route::resource('subcategories', SubcategoryController::class)->parameters(['subcategories' => 'id']);
     Route::resource('sales-report', SalesReportController::class);

@@ -19,6 +19,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        ini_set('upload_tmp_dir', storage_path('tmp'));
     }
 }
