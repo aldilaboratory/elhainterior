@@ -60,13 +60,28 @@
         </div>
 
         <div class="col-12">
-          <label class="form-label">Gambar (opsional)</label>
-          @if ($product->image_url)
-            <div class="mb-2">
-              <img src="{{ $product->image_url }}" alt="Gambar saat ini" style="height:80px;border-radius:6px;object-fit:cover;">
+          @if(isset($product))
+            <div class="row g-2">
+            <label class="form-label">Gambar</label>
+              @foreach($product->images as $img)
+                <div class="col-6 col-md-3">
+                  <div class="img-container" style="max-height: 200px; object-fit: cover; overflow: hidden;">
+                    <img src="{{ $img->url }}" class="img-fluid  rounded mb-1" alt="">
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="set_primary" value="{{ $img->id }}" {{ $img->is_primary ? 'checked' : '' }}>
+                    <label class="form-check-label">Jadikan utama</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="delete_images[]" value="{{ $img->id }}">
+                    <label class="form-check-label text-danger">Hapus</label>
+                  </div>
+                </div>
+              @endforeach
             </div>
+            <label class="form-label mt-3">Tambah Gambar Baru (opsional)</label>
+            <input type="file" name="images[]" class="form-control" accept=".jpg,.jpeg,.png,.webp" multiple>
           @endif
-          <input type="file" name="image" class="form-control" accept=".jpg,.jpeg,.png,.webp">
         </div>
       </div>
 

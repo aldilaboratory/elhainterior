@@ -60,8 +60,9 @@
         </div>
 
         <div class="col-12">
-          <label class="form-label">Gambar (opsional)</label>
-          <input type="file" name="image" class="form-control" accept=".jpg,.jpeg,.png,.webp" />
+          <label class="form-label">Gambar Produk (bisa lebih dari satu)</label>
+          <input type="file" name="images[]" class="form-control" accept=".jpg,.jpeg,.png,.webp" multiple>
+          <div class="form-text">Pilih beberapa file. Gambar pertama otomatis jadi utama, atau kirim primary_index.</div>
         </div>
       </div>
 

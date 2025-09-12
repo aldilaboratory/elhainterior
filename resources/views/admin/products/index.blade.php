@@ -81,7 +81,7 @@
                   <td class="text-center px-2">{{ $products->firstItem() + $productIndex }}</td>
                   <td class="px-2">
                     <div class="d-flex align-items-center gap-3">
-                      <img src="{{ $product->image_url ?? 'https://placehold.co/80x80' }}"
+                      <img src="{{ $product->primary_image_url ?? 'https://placehold.co/80x80' }}"
                           alt="Gambar {{ $product->name }}"
                           class="rounded" style="width:80px;height:80px;object-fit:cover;">
                       <span class="fw-semibold">{{ $product->name }}</span>

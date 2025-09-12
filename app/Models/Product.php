@@ -15,6 +15,13 @@ class Product extends Model
         //
     ];
 
+    public function images() { return $this->hasMany(ProductImage::class)->orderBy('sort_order'); }
+
+    public function primaryImage()
+    {
+        return $this->hasOne(ProductImage::class)->where('is_primary', true);
+    }
+
     public function category()    { 
         return $this->belongsTo(Category::class); 
     }
@@ -26,5 +33,11 @@ class Product extends Model
     public function getImageUrlAttribute(): ?string
     {
         return $this->image_path ? asset('storage/'.$this->image_path) : null;
+    }
+
+        public function getPrimaryImageUrlAttribute(): ?string
+    {
+        $img = $this->primaryImage()->first() ?? $this->images()->first();
+        return $img ? asset('storage/'.$img->path) : null;
     }
 }

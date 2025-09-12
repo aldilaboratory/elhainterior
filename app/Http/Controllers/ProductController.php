@@ -6,8 +6,10 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductImage;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Http\UploadedFile;
@@ -64,21 +66,37 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        $validated = $request->validated();
-        $validated['slug'] = Str::slug($validated['name']);
+        $data = $request->validated();
+        $data['slug'] = Str::slug($data['name']);
 
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            if (!str_starts_with($file->getMimeType() ?? '', 'image/')) {
-                return back()->withErrors('File yang diupload harus gambar.')->withInput();
+        DB::transaction(function () use ($request, $data) {
+            /** @var \App\Models\Product $product */
+            $product = Product::create(collect($data)->except(['images','primary_index'])->all());
+
+            $files = $request->file('images', []); // array atau []
+            $primaryIndex = (int) $request->input('primary_index', 0);
+
+            foreach ($files as $i => $file) {
+                /** @var UploadedFile $file */
+                if (!$file->isValid()) continue;
+
+                $path = $file->store('products', 'public');
+                ProductImage::create([
+                    'product_id' => $product->id,
+                    'path'       => $path,
+                    'is_primary' => $i === $primaryIndex,
+                    'sort_order' => $i,
+                ]);
             }
-            $validated['image_path'] = $file->store('products', 'public');
-        }
 
-        Product::create($validated);
+            // fallback: jika tidak ada yang ditandai utama tetapi ada gambar, set pertama
+            if ($product->images()->exists() && !$product->primaryImage()->exists()) {
+                $first = $product->images()->orderBy('sort_order')->first();
+                $first->update(['is_primary' => true]);
+            }
+        });
 
-        return redirect()->route('admin.products.index')
-            ->with('success','Produk berhasil ditambahkan.');
+        return redirect()->route('admin.products.index')->with('success','Produk berhasil ditambahkan.');
     }
 
     /** Opsional: helper untuk pesan error upload */
@@ -124,21 +142,52 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, $id)
     {
-        $product   = Product::findOrFail($id);
-        $validated = $request->validated();
-        $validated['slug'] = Str::slug($validated['name']);   // <-- tambahkan ini
+        $product = Product::findOrFail($id);
+        $data = $request->validated();
+        $data['slug'] = Str::slug($data['name']);
 
-        if ($request->hasFile('image')) {
-            if ($product->image_path && \Storage::disk('public')->exists($product->image_path)) {
-                \Storage::disk('public')->delete($product->image_path);
+        DB::transaction(function () use ($request, $product, $data) {
+            $product->update(collect($data)->except(['images','delete_images','set_primary'])->all());
+
+            // hapus gambar terpilih
+            $toDelete = $request->input('delete_images', []);
+            if (!empty($toDelete)) {
+                $imgs = $product->images()->whereIn('id', $toDelete)->get();
+                foreach ($imgs as $img) {
+                    \Storage::disk('public')->delete($img->path);
+                    $img->delete();
+                }
             }
-            $validated['image_path'] = $request->file('image')->store('products','public');
-        }
 
-        $product->update($validated);
+            // tambah gambar baru
+            $files = $request->file('images', []);
+            $startOrder = (int) $product->images()->max('sort_order') + 1;
+            foreach ($files as $offset => $file) {
+                if (!$file->isValid()) continue;
+                $path = $file->store('products', 'public');
+                ProductImage::create([
+                    'product_id' => $product->id,
+                    'path'       => $path,
+                    'is_primary' => false,
+                    'sort_order' => $startOrder + $offset,
+                ]);
+            }
 
-        return redirect()->route('admin.products.index')
-            ->with('success','Produk berhasil diperbarui.');
+            // set primary dari radio
+            if ($pid = $request->input('set_primary')) {
+                $product->images()->update(['is_primary' => false]);
+                $product->images()->where('id', $pid)->update(['is_primary' => true]);
+            }
+
+            // jaga-jaga: kalau semua terhapus, tidak ada primary
+            if (!$product->images()->exists()) {
+                // nothing, biarkan tanpa gambar
+            } elseif (!$product->primaryImage()->exists()) {
+                $product->images()->orderBy('sort_order')->first()?->update(['is_primary' => true]);
+            }
+        });
+
+        return redirect()->route('admin.products.index')->with('success','Produk berhasil diperbarui.');
     }
 
     /**

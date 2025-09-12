@@ -29,7 +29,13 @@ class StoreProductRequest extends FormRequest
             'description'    => ['nullable','string'],
             'price'          => ['required','integer','min:0'],
             'stock'          => ['required','integer','min:0'],
-            'image'          => ['nullable','image','mimes:jpg,jpeg,png,webp','max:2048'],
+
+            // multi images
+            'images'         => ['nullable','array','max:10'],
+            'images.*'       => ['image','mimes:jpg,jpeg,png,webp','max:20480'],
+
+            // opsional: index gambar utama dari array images
+            'primary_index'  => ['nullable','integer','min:0'],
         ];
     }
 
