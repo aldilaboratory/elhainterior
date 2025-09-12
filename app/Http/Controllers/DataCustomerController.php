@@ -62,6 +62,10 @@ class DataCustomerController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $customer = User::findOrFail($id);
+
+        $customer->delete();
+
+        return back()->with('success', 'Data berhasil dihapus.');
     }
 }

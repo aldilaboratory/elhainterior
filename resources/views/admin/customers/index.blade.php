@@ -61,7 +61,12 @@
                   <td class="px-2">{{ $customer->name }}</td>
                   <td class="px-2">{{ $customer->email }}</td>
                   <td class="px-2">
-                    <a class="btn btn-danger btn-sm text-white"><i class="mdi mdi-delete"></i> Hapus</a>
+                    <form id="delete-form-{{ $customer->id }}" action="{{ route('admin.data-customer.destroy', $customer->id) }}" method="POST" class="d-inline">
+                      @csrf @method('DELETE')
+                      <button class="btn btn-danger btn-sm text-white delete-btn" data-id="{{ $customer->id }}" data-name="Pelanggan {{ $customer->name }}">
+                        <i class="mdi mdi-delete"></i> Hapus
+                      </button>
+                    </form>
                   </td>
                 </tr>
               @empty
