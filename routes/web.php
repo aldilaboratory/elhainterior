@@ -7,6 +7,7 @@ use App\Http\Controllers\DataCustomerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductDetailController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SalesReportController;
 use App\Http\Controllers\StocksReportController;
@@ -69,8 +70,7 @@ Route::get('/cart', function () {
 })->name('customer.cart');
 
 // Cart
-Route::get('/product-details', function () {
-    return view('customer.product-details');
-})->name('customer.product-details');
+Route::get('/produk/{product:slug}', [ProductDetailController::class, 'show'])
+    ->name('customer.product-details');
 
 require __DIR__.'/auth.php';

@@ -12,7 +12,9 @@ class ProductImage extends Model
     public function product() { 
         return $this->belongsTo(Product::class); 
     }
-    public function getUrlAttribute(): string { 
-        return asset('storage/'.$this->path); 
+    public function getUrlAttribute()
+    {
+        return $this->path ? asset('storage/'.$this->path) : null;
     }
+    
 }
