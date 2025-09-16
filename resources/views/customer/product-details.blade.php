@@ -47,9 +47,7 @@
           <div class="bread-inner">
             <ul class="bread-list">
               <li><a href="{{ route('customer.home') }}">Home<i class="ti-arrow-right"></i></a></li>
-              <li><a href="{{ route('customer.category', $product->category->slug ?? '') }}">
-                {{ $product->category->name ?? 'Kategori' }}
-              </a><i class="ti-arrow-right"></i></li>
+              <li><a href="#">{{ $product->category->name ?? 'Kategori' }}</a><i class="ti-arrow-right"></i></li>
               <li class="active"><a href="#">{{ $product->name }}</a></li>
             </ul>
           </div>
@@ -129,7 +127,12 @@
                           <i class="ti-minus"></i>
                         </button>
                       </div>
-                      <input type="text" name="qty" class="input-number" data-min="1" data-max="{{ max($product->stock,1) }}" value="1">
+					  	@php
+							$minQty   = $product->stock > 0 ? 1 : 0;
+							$maxQty   = $product->stock > 0 ? $product->stock : 0;
+							$initQty  = $minQty;
+						@endphp
+                      <input type="text" name="qty" class="input-number" data-min="{{ $minQty }}" data-max="{{ $maxQty }}" value="{{ $initQty }}" {{ $product->stock <= 0 ? 'readonly' : '' }}>
                       <div class="button plus">
                         <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="qty">
                           <i class="ti-plus"></i>
