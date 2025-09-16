@@ -48,7 +48,7 @@
 					<div class="col-lg-2 col-md-2 col-12">
 						<!-- Logo -->
 						<div class="logo">
-							<a href="{{ route('customer.index') }}"><img src="{{ asset('assets/images/logo.png') }}" alt="logo"></a>
+							<a href="{{ route('customer.home') }}"><img src="{{ asset('assets/images/logo.png') }}" alt="logo"></a>
 						</div>
 						<!--/ End Logo -->
 						<!-- Search Form -->
@@ -125,46 +125,32 @@
 				<div class="cat-nav-head">
 					<div class="row">
 						<div class="col-lg-3">
-							@if (Route::is('customer.index'))
+							@if (Route::is('customer.home'))
 							<div class="all-category">
 								<h3 class="cat-heading"><i class="fa fa-bars" aria-hidden="true"></i>KATEGORI</h3>
 								<ul class="main-category">
-									<li><a href="#">Meja dan Kursi <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+								@foreach($headerCategories as $cat)
+									<li>
+									<a href="{{ route('customer.category', $cat->slug) }}">
+										{{ $cat->name }}
+										@if($cat->subcategories->isNotEmpty())
+										<i class="fa fa-angle-right" aria-hidden="true"></i>
+										@endif
+									</a>
+
+									@if($cat->subcategories->isNotEmpty())
 										<ul class="sub-category">
-											<li><a href="#">Kursi</a></li>
-											<li><a href="#">Table Runner</a></li>
-											<li><a href="#">Placemat</a></li>
-											<li><a href="#">Bantalan Kursi</a></li>
+										@foreach($cat->subcategories as $sub)
+											<li>
+											<a href="{{ route('customer.subcategory', [$cat->slug, $sub->slug]) }}">
+												{{ $sub->name }}
+											</a>
+											</li>
+										@endforeach
 										</ul>
+									@endif
 									</li>
-									<li><a href="#">Peralatan Makan dan Minum <i class="fa fa-angle-right" aria-hidden="true"></i></a>
-										<ul class="sub-category">
-											<li><a href="#">Mangkok</a></li>
-											<li><a href="#">Piring</a></li>
-											<li><a href="#">Sendok Garpu</a></li>
-											<li><a href="#">Alas Gelas</a></li>
-										</ul>
-									</li>
-									<li><a href="#">Perlengkapan Kamar Tidur <i class="fa fa-angle-right" aria-hidden="true"></i></a>
-										<ul class="sub-category">
-											<li><a href="#">Bed Runner + Sarung Bantal</a></li>
-										</ul>
-									</li>
-									<li><a href="#">Peralatan Dapur <i class="fa fa-angle-right" aria-hidden="true"></i></a>
-										<ul class="sub-category">
-											<li><a href="#">Talenan</a></li>
-											<li><a href="#">Tray</a></li>
-											<li><a href="#">Jack Tray</a></li>
-										</ul>
-									</li>
-									<li><a href="#">Perlengkapan Lainnya <i class="fa fa-angle-right" aria-hidden="true"></i></a>
-										<ul class="sub-category">
-											<li><a href="#">Bantal Segitiga Thailand</a></li>
-											<li><a href="#">Kotak Multifungsi</a></li>
-											<li><a href="#">Tissue Box</a></li>
-											<li><a href="#">Tempat Sampah</a></li>
-										</ul>
-									</li>
+								@endforeach
 								</ul>
 							</div>
 							@endif
@@ -176,7 +162,7 @@
 									<div class="navbar-collapse">	
 										<div class="nav-inner">	
 											<ul class="nav main-menu menu navbar-nav">
-												<li class="active"><a href="{{ route('customer.index') }}">Beranda</a></li>
+												<li class="active"><a href="{{ route('customer.home') }}">Beranda</a></li>
 												<li><a href="{{ route('customer.about-us') }}">Tentang Kami</a></li>	
 											</ul>
 										</div>

@@ -7,7 +7,7 @@
 						<!-- Single Widget -->
 						<div class="single-footer about">
 							<div class="logo">
-								<a href="{{ route('customer.index') }}"><img src="{{ asset('assets/images/logo2.png') }}" alt="logo"></a>
+								<a href="{{ route('customer.home') }}"><img src="{{ asset('assets/images/logo2.png') }}" alt="logo"></a>
 							</div>
 							<p class="text">Jelajahi ragam produk kami dan temukan inspirasi untuk mengubah ruang Anda menjadi tempat yang penuh gaya dan kenyamanan. Pemesanan mudah dan pengiriman aman, karena kepuasan Anda adalah prioritas kami.</p>
 							<p class="call">Ada pertanyaan? Hubungu kami<span><a href="tel:123456789">+62 896 0532 2227</a></span></p>
