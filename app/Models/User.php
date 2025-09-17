@@ -46,4 +46,19 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function cart()
+    {
+        return $this->hasOne(Cart::class)->where('is_active', true);
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';   // sesuaikan kolom role/table Anda
+    }
+
+    public function isCustomer(): bool
+    {
+        return $this->role === 'customer';
+    }
 }

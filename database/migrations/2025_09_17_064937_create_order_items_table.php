@@ -13,7 +13,7 @@ return new class extends Migration {
             $t->string('name');
             $t->unsignedBigInteger('price'); // unit price at checkout
             $t->unsignedInteger('qty');
-            $t->unsignedBigInteger('line_total');
+            $t->unsignedBigInteger('line_total'); // unit_price * qty
             $t->timestamps();
         });
     }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DataAdminController;
 use App\Http\Controllers\DataCustomerController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SalesReportController;
 use App\Http\Controllers\StocksReportController;
 use App\Http\Controllers\SubcategoryController;
+use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 
 // Route admin
@@ -21,7 +23,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/', function () {
         return redirect()->route('admin.dashboard');
     });
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', action: [DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('orders', OrderController::class);
     Route::resource('products', ProductController::class)->parameters(['products' => 'id']);
@@ -35,9 +37,23 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
 // Route Customer
 Route::middleware(['auth', 'customer'])->group(function () {
+    Route::get('/', function () {
+        return redirect()->route('welcome');
+    });
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+        Route::get('/checkout',  [CheckoutController::class, 'index'])->name('customer.checkout');
+        Route::post('/checkout', [CheckoutController::class, 'store'])->name('customer.checkout.store');
+        Route::get('/thank-you/{code}', function($code){
+            $order = Order::where('order_code',$code)->with('items.product')->firstOrFail();
+            return view('customer.checkout.thankyou', compact('order'));
+        })->name('customer.thankyou');
+
+    // Route::get('/my-orders/{order}', [CustomerOrderController::class, 'show'])
+    // ->name('customer.orders.show')
+    // ->whereNumber('order');
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('customer.home');
@@ -66,16 +82,6 @@ Route::get('/contact-us', function () {
 Route::get('/shop-grid', function () {
     return view('customer.shop-grid');
 })->name('customer.shop-grid');
-
-// Checkout
-Route::get('/checkout', function () {
-    return view('customer.checkout');
-})->name('customer.checkout');
-
-// Cart
-// Route::get('/cart', function () {
-//     return view('customer.cart');
-// })->name('customer.cart');
 
 // Cart
 Route::get('/produk/{product:slug}', [ProductDetailController::class, 'show'])
