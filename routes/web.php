@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DataAdminController;
 use App\Http\Controllers\DataCustomerController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductDetailController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SalesReportController;
+use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\StocksReportController;
 use App\Http\Controllers\SubcategoryController;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +40,9 @@ Route::middleware(['auth', 'customer'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/checkout',  [CheckoutController::class, 'index'])->name('customer.checkout');
+    Route::post('/checkout', [CheckoutController::class, 'store'])->name('customer.checkout.store');
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('customer.home');
@@ -51,6 +56,11 @@ Route::post('/cart/item/{item}/update', [CartController::class, 'updateItem'])->
 Route::delete('/cart/item/{item}', [CartController::class, 'removeItem'])->name('cart.item.remove');
 Route::post('/cart/item/{item}/update', [CartController::class,'updateItem'])
     ->name('cart.item.update');
+
+Route::get('/shipping/provinces', [ShippingController::class, 'provinces'])->name('ajax.provinces');
+Route::get('/shipping/cities',     [ShippingController::class, 'cities'])->name('ajax.cities'); // ?prov_id=xx
+Route::post('/shipping/cost',      [ShippingController::class, 'cost'])->name('ajax.shipping.cost');
+
 
 // About Us
 Route::get('/about-us', function () {
