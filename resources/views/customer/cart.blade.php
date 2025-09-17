@@ -207,7 +207,6 @@
       const subEl = document.getElementById('cart-subtotal');
       subEl.dataset.subtotal = data.subtotal;
       subEl.textContent = 'Rp' + rupiah(data.subtotal);
-      document.getElementById('cart-total').textContent = 'Rp' + rupiah(data.subtotal);
 
       // stok teks (opsional)
       row.querySelector('.item-stock')?.replaceChildren(document.createTextNode(data.stock + ' stok'));

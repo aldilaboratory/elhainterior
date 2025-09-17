@@ -34,6 +34,11 @@
           <input type="number" name="stock" value="{{ old('stock', $product->stock) }}" min="0" class="form-control" required>
         </div>
 
+        <div class="col-lg-3">
+          <label class="form-label">Berat (gram)</label>
+          <input type="number" name="weight" value="{{ old('stock', $product->weight) }}" min="0" class="form-control" placeholder="0" required>
+        </div>
+
         <div class="col-lg-6">
           <label class="form-label">Kategori</label>
           <select name="category_id" id="categorySelect" class="form-select" required>

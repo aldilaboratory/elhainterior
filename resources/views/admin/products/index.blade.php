@@ -72,6 +72,7 @@
                 <th class="px-2">Sub Kategori</th>
                 <th class="px-2">Harga</th>
                 <th class="px-2">Stok</th>
+                <th class="px-2">Berat</th>
                 <th class="px-2">Aksi</th>
               </tr>
             </thead>
@@ -94,6 +95,7 @@
                   <td class="px-2">{{ $product->subcategory->name ?? '-' }}</td>
                   <td class="px-2">Rp{{ number_format($product->price, 0, ',', '.') }}</td>
                   <td class="px-2 text-center">{{ $product->stock }}</td>
+                  <td class="px-2 text-center">{{ $product->weight }} gram</td>
                   <td class="px-2">
                     <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-info btn-sm text-white">
                       <i class="mdi mdi-pencil"></i>

@@ -104,13 +104,15 @@
                     <span class="discount">Rp{{ number_format($product->price, 0, ',', '.') }}</span>
                   </p>
 
-				  <p class="cat mt-4">
+				          <p class="cat mt-4">
                     Kategori :
                     @if($product->category)
-                      <a href="{{ route('customer.category', $product->category->slug) }}">{{ $product->category->name }}</a>
+                      {{-- <a href="{{ route('customer.category', $product->category->slug) }}">{{ $product->category->name }}</a> --}}
+                      <span>{{ $product->category->name }} / </span>
                     @endif
                     @if($product->subcategory)
-                      &nbsp;/<a href="{{ route('customer.subcategory', [$product->category->slug, $product->subcategory->slug]) }}">{{ $product->subcategory->name }}</a>
+                      {{-- &nbsp;/<a href="{{ route('customer.subcategory', [$product->category->slug, $product->subcategory->slug]) }}">{{ $product->subcategory->name }}</a> --}}
+                      <span>{{ $product->subcategory->name }}</span>
                     @endif
                   </p>
 
@@ -139,13 +141,16 @@
                         </button>
                       </div>
                     </div>
-					          <p class="availability">
+					          <p class="availability mt-4">
                       Ketersediaan :
                       @if($product->stock > 0)
                         <span class="text-success">{{ $product->stock }} stok</span>
                       @else
                         <span class="text-danger">Habis</span>
                       @endif
+                    </p>
+                    <p class="availability mt-2">
+                      Berat : <span>{{ $product->weight ?? '-' }} gram</span>
                     </p>
                   </div>
 
