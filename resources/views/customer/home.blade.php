@@ -94,15 +94,21 @@
 							@endif
 							</a>
 							<div class="button-head">
-							<div class="product-action">
-								<a title="Lihat Detail" href="{{ route('customer.product-details', $p->slug) }}">
-								<i class="ti-eye"></i><span>Lihat Detail</span>
-								</a>
-								<a title="Wishlist" href="#"><i class="ti-heart"></i><span>Tambah Wishlist</span></a>
-							</div>
-							<div class="product-action-2">
-								<a title="Tambah ke Keranjang" href="#"><i class="ti-shopping-cart"></i> Tambah ke Keranjang</a>
-							</div>
+								<div class="product-action">
+									<a title="Lihat Detail" href="{{ route('customer.product-details', $p->slug) }}">
+									<i class="ti-eye"></i><span>Lihat Detail</span>
+									</a>
+								</div>
+								<div class="product-action-2">
+									<form action="{{ route('cart.add') }}" method="POST">
+										@csrf
+										<input type="hidden" name="product_id" value="{{ $p->id }}">
+										<input type="hidden" name="qty" value="1">
+										<button class="btn" type="submit" {{ $p->stock <= 0 ? 'disabled' : '' }}>
+											Tambah ke Keranjang
+										</button>
+									</form>
+								</div>
 							</div>
 						</div>
 						<div class="product-content">
@@ -173,15 +179,20 @@
 												@endif
 												</a>
 												<div class="button-head">
-												<div class="product-action">
-													<a title="Lihat Detail" href="{{ route('customer.product-details', $p->slug) }}">
-													<i class="ti-eye"></i><span>Lihat Detail</span>
-													</a>
-													<a title="Wishlist" href="#"><i class="ti-heart"></i><span>Tambah Wishlist</span></a>
-												</div>
-												<div class="product-action-2">
-													<a title="Tambah ke Keranjang" href="#">Tambah ke Keranjang</a>
-												</div>
+													<div class="product-action">
+														<a title="Lihat" href="{{ route('customer.product-details', $p->slug) }}"><i class="ti-eye"></i><span>Lihat</span></a>
+														{{-- <a title="Wishlist" href="#"><i class="ti-heart"></i><span>Wishlist</span></a> --}}
+													</div>
+													<div class="product-action-2">
+														<form action="{{ route('cart.add') }}" method="POST">
+															@csrf
+															<input type="hidden" name="product_id" value="{{ $p->id }}">
+															<input type="hidden" name="qty" value="1">
+															<button class="btn" type="submit" {{ $p->stock <= 0 ? 'disabled' : '' }}>
+																Tambah ke Keranjang
+															</button>
+														</form>
+													</div>
 												</div>
 											</div>
 											<div class="product-content">

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DataAdminController;
@@ -44,6 +45,13 @@ Route::get('/', [HomeController::class, 'index'])->name('customer.home');
 Route::get('/kategori/{category:slug}', [CategoryController::class, 'show'])->name('customer.category');
 Route::get('/kategori/{category:slug}/{subcategory:slug}', [CategoryController::class, 'showSub'])->name('customer.subcategory');
 
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+Route::post('/cart/item/{item}/update', [CartController::class, 'updateItem'])->name('cart.item.update');
+Route::delete('/cart/item/{item}', [CartController::class, 'removeItem'])->name('cart.item.remove');
+Route::post('/cart/item/{item}/update', [CartController::class,'updateItem'])
+    ->name('cart.item.update');
+
 // About Us
 Route::get('/about-us', function () {
     return view('customer.about-us');
@@ -65,9 +73,9 @@ Route::get('/checkout', function () {
 })->name('customer.checkout');
 
 // Cart
-Route::get('/cart', function () {
-    return view('customer.cart');
-})->name('customer.cart');
+// Route::get('/cart', function () {
+//     return view('customer.cart');
+// })->name('customer.cart');
 
 // Cart
 Route::get('/produk/{product:slug}', [ProductDetailController::class, 'show'])

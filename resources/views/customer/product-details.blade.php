@@ -127,11 +127,11 @@
                           <i class="ti-minus"></i>
                         </button>
                       </div>
-					  	@php
-							$minQty   = $product->stock > 0 ? 1 : 0;
-							$maxQty   = $product->stock > 0 ? $product->stock : 0;
-							$initQty  = $minQty;
-						@endphp
+                      @php
+                        $minQty   = $product->stock > 0 ? 1 : 0;
+                        $maxQty   = $product->stock > 0 ? $product->stock : 0;
+                        $initQty  = $minQty;
+                      @endphp
                       <input type="text" name="qty" class="input-number" data-min="{{ $minQty }}" data-max="{{ $maxQty }}" value="{{ $initQty }}" {{ $product->stock <= 0 ? 'readonly' : '' }}>
                       <div class="button plus">
                         <button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="qty">
@@ -139,30 +139,28 @@
                         </button>
                       </div>
                     </div>
-					<p class="availability">
-                    Ketersediaan :
-                    @if($product->stock > 0)
-                      <span class="text-success">{{ $product->stock }} stok</span>
-                    @else
-                      <span class="text-danger">Habis</span>
-                    @endif
-                  </p>
+					          <p class="availability">
+                      Ketersediaan :
+                      @if($product->stock > 0)
+                        <span class="text-success">{{ $product->stock }} stok</span>
+                      @else
+                        <span class="text-danger">Habis</span>
+                      @endif
+                    </p>
                   </div>
 
                   <div class="add-to-cart">
                     {{-- ganti ke route cart mu sendiri --}}
-                    {{-- <form action="{{ route('cart.add', $product->id) }}" method="POST" class="d-inline"> --}}
-                    <form action="#" method="POST" class="d-inline">
-                      @csrf
-                      <input type="hidden" name="qty" value="1" id="hiddenQty">
-                      <button class="btn mt-4" type="submit"><i class="ti-shopping-cart"></i> Tambah ke Keranjang</button>
-                    </form>
+                    <form action="{{ route('cart.add') }}" method="POST" class="d-inline">
+						@csrf
+						<input type="hidden" name="product_id" value="{{ $product->id }}">
+						<input type="hidden" name="qty" value="1" id="hiddenQty">
+						<button class="btn mt-4" type="submit" {{ $product->stock <= 0 ? 'disabled' : '' }}>
+							<i class="ti-shopping-cart"></i> Tambah ke Keranjang
+						</button>
+					</form>
                     <a href="#" class="btn min"><i class="ti-heart"></i></a>
                   </div>
-
-                  
-
-                  
                 </div>
               </div>
             </div>
@@ -218,6 +216,12 @@
                   <a href="{{ route('customer.product-details', $rel->slug) }}">
                     <img class="default-img" src="{{ $rel->image_url ?? 'https://placehold.co/550x750' }}" alt="{{ $rel->name }}">
                     <img class="hover-img"   src="{{ $rel->image_url ?? 'https://placehold.co/550x750' }}" alt="{{ $rel->name }}">
+                    @if($rel->created_at->gt(now()->subDays(7)))
+                      <span class="new">Baru</span>
+                    @endif
+                    @if($rel->stock <= 0)
+                      <span class="out-of-stock">Stok Habis</span>
+                    @endif
                   </a>
                   <div class="button-head">
                     <div class="product-action">
@@ -225,10 +229,13 @@
                       {{-- <a title="Wishlist" href="#"><i class="ti-heart"></i><span>Wishlist</span></a> --}}
                     </div>
                     <div class="product-action-2">
-                      {{-- <form action="{{ route('cart.add', $rel->id) }}" method="POST"> --}}
-                      <form action="#" method="POST">
+                      <form action="{{ route('cart.add') }}" method="POST">
                         @csrf
-                        <button class="btn" type="submit">Tambah</button>
+                        <input type="hidden" name="product_id" value="{{ $rel->id }}">
+                        <input type="hidden" name="qty" value="1">
+                        <button class="btn" type="submit" {{ $rel->stock <= 0 ? 'disabled' : '' }}>
+                          Tambah ke Keranjang
+                        </button>
                       </form>
                     </div>
                   </div>
