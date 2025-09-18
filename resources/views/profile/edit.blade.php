@@ -18,6 +18,15 @@
                     </div>
                 </div>
 
+                {{-- Update Addresses --}}
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body p-4 p-md-5">
+                        <div class="mx-auto" style="max-width: 36rem;">
+                            @include('profile.partials.addresses-form')
+                        </div>
+                    </div>
+                </div>
+
                 {{-- Update Password --}}
                 <div class="card shadow-sm mb-4">
                     <div class="card-body p-4 p-md-5">

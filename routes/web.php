@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
@@ -44,12 +45,18 @@ Route::middleware(['auth', 'customer'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-        Route::get('/checkout',  [CheckoutController::class, 'index'])->name('customer.checkout');
-        Route::post('/checkout', [CheckoutController::class, 'store'])->name('customer.checkout.store');
-        Route::get('/thank-you/{code}', function($code){
-            $order = Order::where('order_code',$code)->with('items.product')->firstOrFail();
-            return view('customer.checkout.thankyou', compact('order'));
-        })->name('customer.thankyou');
+    Route::get('/addresses', [AddressController::class, 'index'])->name('addresses.index');
+    Route::post('/addresses', [AddressController::class, 'store'])->name('addresses.store');
+    Route::patch('/addresses/{address}', [AddressController::class, 'update'])->name('addresses.update');
+    Route::delete('/addresses/{address}', [AddressController::class, 'destroy'])->name('addresses.destroy');
+    Route::patch('/addresses/{address}/make-default', [AddressController::class, 'makeDefault'])->name('addresses.make-default');
+
+    Route::get('/checkout',  [CheckoutController::class, 'index'])->name('customer.checkout');
+    Route::post('/checkout', [CheckoutController::class, 'store'])->name('customer.checkout.store');
+    Route::get('/thank-you/{code}', function($code){
+        $order = Order::where('order_code',$code)->with('items.product')->firstOrFail();
+        return view('customer.checkout.thankyou', compact('order'));
+    })->name('customer.thankyou');
 
     // Route::get('/my-orders/{order}', [CustomerOrderController::class, 'show'])
     // ->name('customer.orders.show')
