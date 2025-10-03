@@ -20,6 +20,8 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'phone',
+        'address',
         'password',
         'role',
     ];
@@ -60,5 +62,13 @@ class User extends Authenticatable
     public function isCustomer(): bool
     {
         return $this->role === 'customer';
+    }
+
+    public function addresses() {
+        return $this->hasMany(Address::class);
+    }
+
+    public function defaultAddress() {
+        return $this->hasOne(Address::class)->where('is_default', true);
     }
 }
