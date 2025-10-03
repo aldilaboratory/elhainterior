@@ -107,7 +107,7 @@
                 Swal.fire({
                     icon: 'success',
                     text: '{{ session('success') }}',
-                    timer: 5000,
+                    timer: 2000,
                     timerProgressBar: false,
                     showConfirmButton: false,
                     toast: true,
@@ -120,39 +120,15 @@
                 Swal.fire({
                     icon: 'error',
                     text: '{{ session('error') }}',
-                    timer: 5000,
+                    timer: 2000,
                     timerProgressBar: false,
                     showConfirmButton: false,
                     toast: true,
                     position: 'top',
-                    background: '#ffefea',
+                    background: '#F9BDBD',
                 });
             @endif
         });
         </script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('.delete-btn').forEach(button => {
-          button.addEventListener('click', function (e) {
-            e.preventDefault(); // aman karena type="button" (tidak submit)
-            const id = this.getAttribute('data-id');
-            const name = this.getAttribute('data-name');
-
-            Swal.fire({
-              title: 'Apakah Anda yakin?',
-              text: `Data "${name}" akan dihapus!`,
-              icon: 'warning',
-              showCancelButton: true,
-              confirmButtonText: 'Ya, hapus!',
-              cancelButtonText: 'Batal'
-            }).then((result) => {
-              if (result.isConfirmed) {
-                document.getElementById('delete-form-' + id).submit();
-              }
-            });
-          });
-        });
-      });
-    </script>
     </body>
 </html>

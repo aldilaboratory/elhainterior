@@ -14,16 +14,10 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
-    public function edit(Request $request)
+    public function edit(Request $request): View
     {
-        $user = $request->user();
-        $addresses = $user->addresses()->orderByDesc('is_default')->latest()->get();
-        $defaultAddressId = optional($addresses->firstWhere('is_default', true))->id;
-
         return view('profile.edit', [
-            'user' => $user,
-            'addresses' => $addresses,
-            'defaultAddressId' => $defaultAddressId,
+            'user' => $request->user(),
         ]);
     }
 

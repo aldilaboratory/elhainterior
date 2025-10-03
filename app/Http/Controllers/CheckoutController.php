@@ -21,12 +21,8 @@ class CheckoutController extends Controller
         // Ongkir statis
         $shipping = 25000; // Rp25.000
         $total    = $subtotal + $shipping;
-        
-        $user = auth()->user();
-        $addresses = $user->addresses()->get();
-        $defaultAddressId = optional($user->defaultAddress)->id;
 
-        return view('customer.checkout.index', compact('lines', 'subtotal', 'shipping', 'total','addresses','defaultAddressId'));
+        return view('customer.checkout.index', compact('lines', 'subtotal', 'shipping', 'total'));
     }
 
     public function store(Request $request)
