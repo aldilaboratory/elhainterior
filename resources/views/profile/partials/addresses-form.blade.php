@@ -164,6 +164,8 @@
               @error('address_line','editAddress')<div class="invalid-feedback">{{ $message }}</div>@enderror
             </div>
 
+            <input type="hidden" id="na_postal_code" name="na_postal_code">
+
             {{-- TUJUAN (autocomplete) --}}
             <div class="form-group col-12">
               <label>Tujuan (Komerce/RajaOngkir V2) <span class="text-danger">*</span></label>

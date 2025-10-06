@@ -4,11 +4,14 @@ use App\Http\Controllers\AddressController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CustomerOrderController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DataAdminController;
 use App\Http\Controllers\DataCustomerController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MidtransWebhookController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentWebhookController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductDetailController;
 use App\Http\Controllers\ProfileController;
@@ -16,118 +19,9 @@ use App\Http\Controllers\SalesReportController;
 use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\StocksReportController;
 use App\Http\Controllers\SubcategoryController;
+use App\Http\Middleware\VerifyCsrfToken;
 use App\Models\Order;
 use Illuminate\Support\Facades\Route;
-
-// Route::get('/__ping-komerce', function () {
-//     return Http::withHeaders([
-//         'Authorization' => 'Bearer '.config('services.komerce.key'),
-//     ])->withOptions(['curl'=>[CURLOPT_IPRESOLVE=>CURL_IPRESOLVE_V4]])
-//       ->get('https://api.komerce.id/rajaongkir/destination/search', ['q'=>'jakarta'])
-//       ->json();
-// });
-
-// Route::get('/__test-config', function () {
-//     return [
-//         'rajaongkir' => [
-//             'base' => config('rajaongkir.base'),
-//             'key_exists' => !empty(config('rajaongkir.key')),
-//             'key_length' => strlen(config('rajaongkir.key')),
-//         ],
-//         'komerce' => [
-//             'dest_base' => config('services.komerce.dest_base'),
-//             'key_exists' => !empty(config('services.komerce.key')),
-//             'key_length' => strlen(config('services.komerce.key') ?? ''),
-//             'header' => config('services.komerce.header'),
-//             'prefix' => config('services.komerce.prefix'),
-//         ],
-//     ];
-// });
-
-// Route::get('/__test-search', function () {
-//     $url = 'https://api.komerce.id/rajaongkir/destination/search';
-//     $key = config('services.komerce.key');
-    
-//     try {
-//         $response = Http::withHeaders([
-//             'Authorization' => 'Bearer ' . $key,
-//             'Accept' => 'application/json',
-//         ])
-//         ->withOptions([
-//             'curl' => [
-//                 CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4,
-//             ],
-//         ])
-//         ->timeout(20)
-//         ->get($url, ['q' => 'jakarta']);
-        
-//         return [
-//             'status' => $response->status(),
-//             'body' => $response->json(),
-//         ];
-//     } catch (\Throwable $e) {
-//         return [
-//             'error' => $e->getMessage(),
-//             'trace' => $e->getTraceAsString(),
-//         ];
-//     }
-// });
-
-// Route::get('/__test-search-fixed', function () {
-//     $url = 'https://rajaongkir.komerce.id/api/v1/destination/search';
-//     $key = config('services.komerce.key');
-    
-//     try {
-//         $response = Http::withHeaders([
-//             'key' => $key,  // BUKAN Authorization: Bearer
-//             'Accept' => 'application/json',
-//         ])
-//         ->withOptions([
-//             'curl' => [
-//                 CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4,
-//             ],
-//         ])
-//         ->timeout(20)
-//         ->get($url, ['q' => 'jakarta']);
-        
-//         return [
-//             'status' => $response->status(),
-//             'body' => $response->json(),
-//             'headers_sent' => [
-//                 'key' => $key,
-//                 'url' => $url,
-//             ],
-//         ];
-//     } catch (\Throwable $e) {
-//         return [
-//             'error' => $e->getMessage(),
-//         ];
-//     }
-// });
-
-// Route::get('/__test-destination', function () {
-//     $url = 'https://rajaongkir.komerce.id/api/v1/destination/domestic-destination';
-//     $key = config('rajaongkir.key');
-    
-//     try {
-//         $response = Http::withHeaders([
-//             'key' => $key,
-//             'Accept' => 'application/json',
-//         ])
-//         ->withOptions([
-//             'curl' => [CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4],
-//         ])
-//         ->timeout(20)
-//         ->get($url, ['search' => 'jakarta']);
-        
-//         return [
-//             'status' => $response->status(),
-//             'body' => $response->json(),
-//         ];
-//     } catch (\Throwable $e) {
-//         return ['error' => $e->getMessage()];
-//     }
-// });
 
 // Route admin
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
@@ -180,6 +74,13 @@ Route::middleware(['auth', 'customer'])->group(function () {
         return view('customer.checkout.thankyou', compact('order'));
     })->name('customer.thankyou');
 
+    Route::get('/my-orders', [CustomerOrderController::class, 'index'])->name('customer.my-orders');
+    Route::get('/my-orders/{order:order_code}', [CustomerOrderController::class, 'show'])
+        ->name('customer.my-orders.show');
+
+    Route::get('/pay/{order}', [CheckoutController::class, 'pay'])
+         ->name('customer.pay');
+
     // Route::get('/my-orders/{order}', [CustomerOrderController::class, 'show'])
     // ->name('customer.orders.show')
     // ->whereNumber('order');
@@ -213,5 +114,15 @@ Route::get('/shop-grid', function () {
 // Cart
 Route::get('/produk/{product:slug}', [ProductDetailController::class, 'show'])
     ->name('customer.product-details');
+
+Route::post('/checkout', [CheckoutController::class, 'store'])->name('customer.checkout.store');
+Route::post('/midtrans/webhook', [PaymentWebhookController::class, 'handle'])
+    ->name('midtrans.webhook')
+    ->withoutMiddleware([VerifyCsrfToken::class]);
+Route::get('/pay/{order}', [CheckoutController::class, 'pay'])->name('customer.pay.snap')->middleware('auth');
+Route::get('/payment/finish',   [PaymentWebhookController::class,'finish'])->name('midtrans.finish');
+Route::get('/payment/unfinish', [PaymentWebhookController::class,'unfinish'])->name('midtrans.unfinish');
+Route::get('/payment/error',    [PaymentWebhookController::class,'error'])->name('midtrans.error');
+
 
 require __DIR__.'/auth.php';

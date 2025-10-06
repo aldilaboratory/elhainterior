@@ -131,8 +131,8 @@
 									<div class="navbar-collapse">	
 										<div class="nav-inner">	
 											<ul class="nav main-menu menu navbar-nav">
-												<li class="active"><a href="{{ route('customer.home') }}">Beranda</a></li>
-												<li><a href="{{ route('customer.about-us') }}">Tentang Kami</a></li>	
+												<li><a href="{{ route('customer.home') }}">Beranda</a></li>
+												<li><a href="{{ route('customer.my-orders') }}">Pesanan Saya</a></li>
 											</ul>
 										</div>
 									</div>

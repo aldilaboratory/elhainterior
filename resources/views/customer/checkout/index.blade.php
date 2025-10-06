@@ -56,25 +56,25 @@
                   <div class="row g-3">
                     <div class="col-md-4">
                       <label class="form-label">Label <span class="text-danger">*</span></label>
-                      <input class="form-control" id="na_label" name="na_label" placeholder="Rumah / Kantor">
+                      <input class="form-control na-field" id="na_label" name="na_label" placeholder="Rumah / Kantor" disabled>
                     </div>
                     <div class="col-md-8">
                       <label class="form-label">Nama Penerima <span class="text-danger">*</span></label>
-                      <input class="form-control" id="na_recipient" name="na_recipient" value="{{ auth()->user()->name }}">
+                      <input class="form-control na-field" id="na_recipient" name="na_recipient" value="{{ auth()->user()->name }}" disabled>
                     </div>
                     <div class="col-md-12">
                       <label class="form-label">No. HP <span class="text-danger">*</span></label>
-                      <input class="form-control" id="na_phone" name="na_phone" value="{{ auth()->user()->phone }}">
+                      <input class="form-control na-field" id="na_phone" name="na_phone" value="{{ auth()->user()->phone }}" disabled>
                     </div>
                     <div class="col-12">
                       <label class="form-label">Alamat (jalan/rt/rw/patokan) <span class="text-danger">*</span></label>
-                      <input class="form-control" id="na_address" name="na_address" placeholder="Jl. Contoh No. 1 RT 01/02">
+                      <input class="form-control na-field" id="na_address" name="na_address" placeholder="Jl. Contoh No. 1 RT 01/02" disabled>
                     </div>
 
                     {{-- AUTOCOMPLETE TUJUAN --}}
                     <div class="col-12">
                       <label class="form-label">Tujuan (Komerce/RajaOngkir V2) <span class="text-danger">*</span></label>
-                      <input class="form-control" id="na_dest_search" placeholder="kuta / denpasar / tebet..." autocomplete="off">
+                      <input class="form-control na-field" id="na_dest_search" placeholder="kuta / denpasar / tebet..." autocomplete="off" disabled>
                       <small class="text-muted">Pilih salah satu hasil.</small>
                       <div id="na_dest_results" class="list-group mt-1" style="max-height:220px; overflow:auto; display:none;"></div>
                       <input type="hidden" id="na_destination_id" name="na_destination_id">
@@ -82,12 +82,23 @@
                     </div>
 
                     <div class="col-12 form-check mt-2">
-                      <input class="form-check-input" type="checkbox" id="na_is_default" name="na_is_default" value="1">
+                      <input class="form-check-input na-field" type="checkbox" id="na_is_default" name="na_is_default" value="1" disabled>
                       <label for="na_is_default" class="form-check-label">Jadikan sebagai alamat utama</label>
                     </div>
                   </div>
                 </div>
               </div>
+
+              {{-- ===== ERROR LIST (server) ===== --}}
+              @if ($errors->any())
+                <div class="alert alert-danger mt-3">
+                  <ul class="mb-0">
+                    @foreach ($errors->all() as $err)
+                      <li>{{ $err }}</li>
+                    @endforeach
+                  </ul>
+                </div>
+              @endif
 
               {{-- ===== KURIR + LAYANAN ===== --}}
               <div class="mt-4">
@@ -101,9 +112,7 @@
                     <option value="sicepat">SiCepat</option>
                     <option value="anteraja">AnterAja</option>
                   </select>
-                  <button type="button" id="btn_quote" class="btn btn-outline-primary">
-                    Hitung Ongkir
-                  </button>
+                  <button type="button" id="btn_quote" class="btn btn-outline-primary">Hitung Ongkir</button>
                 </div>
                 <div id="services" class="mt-4 small text-muted">—</div>
               </div>
@@ -178,7 +187,7 @@
                   </ul>
 
                   <div class="mt-4 d-grid">
-                    <button type="submit" class="btn btn-dark w-100">Bayar Sekarang</button>
+                    <button type="submit" class="btn btn-dark w-100" id="btn_pay" disabled>Bayar Sekarang</button>
                   </div>
                 </div>
               </div>
@@ -213,6 +222,19 @@
     const hidId    = document.getElementById('na_destination_id');
     const hidLbl   = document.getElementById('na_destination_label');
     const btnQuote = document.getElementById('btn_quote');
+    const btnPay   = document.getElementById('btn_pay');
+
+    // field alamat-baru (supaya bisa enable/disable massal)
+    const naFields = document.querySelectorAll('.na-field');
+
+    function setNAEnabled(enabled){
+      naFields.forEach(el => { el.disabled = !enabled; el.required = enabled; });
+    }
+
+    function updatePayButtonState(){
+      const ready = fCourier.value && fService.value && fShip.value;
+      btnPay.disabled = !ready;
+    }
 
     // ===== Utils
     function rupiah(n){ return 'Rp' + Number(n||0).toLocaleString('id-ID'); }
@@ -221,20 +243,23 @@
       uiShip.textContent  = rupiah(0);
       uiTotal.textContent = rupiah(SUBTOTAL);
       fCourier.value = fService.value = fShip.value = fEtd.value = '';
+      updatePayButtonState();
     }
+    updatePayButtonState();
 
-    // ===== Mode switch (manual)
+    // ===== Mode switch
     function setMode(mode){
       const isNew = (mode === 'new');
       addrModeFld.value = isNew ? 'new' : 'saved';
       newBox.style.display   = isNew ? 'block' : 'none';
       savedBox.style.display = isNew ? 'none'  : 'block';
+      setNAEnabled(isNew);          // penting: supaya na_* tidak ikut submit saat saved
       resetShippingUI();
     }
     modeSaved.addEventListener('change', ()=> setMode('saved'));
     modeNew  .addEventListener('change', ()=> setMode('new'));
 
-    // ===== Autocomplete tujuan (NEW) — tidak auto hitung
+    // ===== Autocomplete tujuan (NEW)
     let debTimer = null, lastQ = '';
     function renderResults(items) {
       listWrap.innerHTML = '';
@@ -243,11 +268,12 @@
         const a = document.createElement('a');
         a.href = 'javascript:void(0)';
         a.className = 'list-group-item list-group-item-action';
-        a.textContent = it.label;
+        a.textContent = it.label; // ex: "TEBET BARAT, TEBET, JAKARTA SELATAN, DKI JAKARTA (12810)"
         a.onclick = () => {
           qInput.value = it.label;
           hidId.value  = it.id;
           hidLbl.value = it.label;
+          document.getElementById('na_postal_code').value = it.postal_code || '';   // <-- penting
           listWrap.style.display = 'none';
           servicesWrap.textContent = 'Tujuan terkunci. Klik "Hitung Ongkir".';
         };
@@ -260,12 +286,15 @@
       const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
       const data = await res.json();
       if (!data.ok) return [];
-      return (data.data || []).map(r => ({ id: r.id, label: r.label }));
+      return (data.data || []).map(r => ({
+        id: r.id,
+        label: r.label,
+        postal_code: r.postal_code || r.postcode || r.zip || ''
+      }));
     }
-    // reset destination_id saat user mengetik ulang
     qInput?.addEventListener('input', () => {
       const q = qInput.value.trim();
-      hidId.value = '';
+      hidId.value = ''; hidLbl.value='';
       if (debTimer) clearTimeout(debTimer);
       if (q.length < 3) { listWrap.style.display = 'none'; servicesWrap.textContent = 'Ketik ≥3 huruf untuk mencari tujuan.'; return; }
       debTimer = setTimeout(async () => {
@@ -278,7 +307,7 @@
       }, 300);
     });
 
-    // ===== Hitung ongkir (hanya via tombol)
+    // ===== Hitung ongkir
     btnQuote.addEventListener('click', quoteNow);
 
     async function quoteNow(){
@@ -288,9 +317,9 @@
       if(!courier){ servicesWrap.textContent='Pilih kurir terlebih dahulu.'; return; }
       fCourier.value = courier;
 
-      const mode = modeNew.checked ? 'new' : 'saved';
+      const isNew = modeNew.checked;
 
-      if (mode === 'saved') {
+      if (!isNew) {
         const opt = selectSaved?.options[selectSaved.selectedIndex];
         const hasDest = opt && opt.getAttribute('data-has-dest') === '1';
         if (!hasDest) { servicesWrap.textContent='Alamat tersimpan ini belum memiliki destination_id.'; return; }
@@ -301,30 +330,36 @@
 
       try{
         servicesWrap.textContent='Menghitung…';
-        let resp;
-        if (mode === 'saved') {
-          resp = await fetch(`{{ route('ajax.shipping.cost') }}`,{
-            method:'POST',
-            headers:{'Content-Type':'application/json','X-CSRF-TOKEN':'{{ csrf_token() }}'},
-            body: JSON.stringify({ address_id: selectSaved.value, courier })
-          });
+
+        let url, payload;
+        if (!isNew) {
+          url     = `{{ route('ajax.shipping.cost', [], false) }}`;
+          payload = { address_id: selectSaved.value, courier };
         } else {
-          resp = await fetch(`{{ route('ajax.shipping.quote') }}`,{
-            method:'POST',
-            headers:{'Content-Type':'application/json','X-CSRF-TOKEN':'{{ csrf_token() }}'},
-            body: JSON.stringify({ destination_id: parseInt(hidId.value,10), courier })
-          });
+          url     = `{{ route('ajax.shipping.quote', [], false) }}`;
+          payload = { destination_id: parseInt(hidId.value,10), courier };
         }
 
-        let payload;
-        try{ payload = await resp.json(); }
-        catch{ payload = { ok:false, message:'Response tidak valid.' }; }
+        const resp = await fetch(url, {
+          method: 'POST',
+          credentials: 'same-origin',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+            'X-Requested-With': 'XMLHttpRequest'
+          },
+          body: JSON.stringify(payload)
+        });
 
-        if(!resp.ok && payload?.message){
-          servicesWrap.innerHTML = `<span class="text-danger">${payload.message}</span>`;
+        let data;
+        try { data = await resp.json(); }
+        catch{ data = { ok:false, message:'Response tidak valid.' }; }
+
+        if(!resp.ok && data?.message){
+          servicesWrap.innerHTML = `<span class="text-danger">${data.message}</span>`;
           return;
         }
-        renderServices(payload);
+        renderServices(data);
       }catch(e){
         servicesWrap.innerHTML = `<span class="text-danger">${e?.message || 'Gagal menghitung ongkir.'}</span>`;
       }
@@ -356,12 +391,22 @@
           uiTotal.textContent = rupiah(SUBTOTAL + price);
           servicesWrap.querySelectorAll('button').forEach(b=>b.classList.remove('btn-secondary','text-white'));
           btn.classList.add('btn-secondary','text-white');
+          updatePayButtonState();
         };
         servicesWrap.appendChild(btn);
       });
     }
 
-    // Init sesuai radio (browser kadang restore state)
+    // Guard client-side sebelum submit
+    document.getElementById('checkout-form').addEventListener('submit', function(e){
+      if(!fCourier.value || !fService.value || !fShip.value){
+        e.preventDefault();
+        servicesWrap.innerHTML = '<span class="text-danger">Pilih layanan ongkir dulu.</span>';
+        window.scrollTo({ top: servicesWrap.getBoundingClientRect().top + window.scrollY - 120, behavior: 'smooth' });
+      }
+    });
+
+    // Init (browser kadang restore state)
     setMode(modeNew.checked ? 'new' : 'saved');
   });
   </script>

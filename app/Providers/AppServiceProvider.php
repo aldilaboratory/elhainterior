@@ -8,6 +8,7 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Midtrans\Config as MidtransConfig;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,6 +19,11 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        MidtransConfig::$isProduction = config('midtrans.is_production');
+        MidtransConfig::$serverKey    = config('midtrans.server_key');
+        MidtransConfig::$isSanitized  = config('midtrans.sanitize', true);
+        MidtransConfig::$is3ds        = config('midtrans.enable_3ds', true);
+
         ini_set('upload_tmp_dir', storage_path('tmp'));
 
         // Kategori untuk header (aman untuk guest)
