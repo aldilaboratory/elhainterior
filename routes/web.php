@@ -10,6 +10,7 @@ use App\Http\Controllers\DataAdminController;
 use App\Http\Controllers\DataCustomerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MidtransWebhookController;
+use App\Http\Controllers\OrderAdminController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentWebhookController;
 use App\Http\Controllers\ProductController;
@@ -31,7 +32,13 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     });
     Route::get('/dashboard', action: [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::resource('orders', OrderController::class);
+    // penting: pastikan parameter resource pakai {order}
+    Route::resource('orders', OrderAdminController::class)
+         ->parameters(['orders' => 'order']);
+
+    // route ekstra untuk ubah status (packing/shipped/completed/dll)
+    Route::patch('/orders/{order}/status', [OrderAdminController::class, 'updateStatus'])
+         ->name('orders.update-status');
     Route::resource('products', ProductController::class)->parameters(['products' => 'id']);
     Route::resource('categories', CategoryController::class)->parameters(['categories' => 'id']);
     Route::resource('subcategories', SubcategoryController::class)->parameters(['subcategories' => 'id']);

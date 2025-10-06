@@ -34,6 +34,7 @@ class Product extends Model
 
     public function category()    { return $this->belongsTo(Category::class); }
     public function subcategory() { return $this->belongsTo(Subcategory::class); }
+    public function orderItems(){ return $this->hasMany(\App\Models\OrderItem::class); }
 
     // Akses kolom lama (jika masih dipakai)
     public function getImageUrlAttribute(): ?string

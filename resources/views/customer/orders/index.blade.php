@@ -40,7 +40,7 @@
                       'unconfirmed' => 'badge-secondary',
                       'packing'     => 'badge-info',
                       'shipped'     => 'badge-primary',
-                      'complete'    => 'badge-success',
+                      'completed'    => 'badge-success',
                       'cancelled'   => 'badge-danger',
                     ][$o->order_status] ?? 'badge-secondary';
                   @endphp
