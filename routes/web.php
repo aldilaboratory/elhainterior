@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\AllProductsController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
@@ -114,9 +115,8 @@ Route::get('/contact-us', function () {
 })->name('customer.contact-us');
 
 // Contact Us
-Route::get('/shop-grid', function () {
-    return view('customer.shop-grid');
-})->name('customer.shop-grid');
+Route::get('/all-products', [AllProductsController::class, 'index'])
+    ->name('customer.all-products');
 
 // Cart
 Route::get('/produk/{product:slug}', [ProductDetailController::class, 'show'])
@@ -124,8 +124,7 @@ Route::get('/produk/{product:slug}', [ProductDetailController::class, 'show'])
 
 Route::post('/checkout', [CheckoutController::class, 'store'])->name('customer.checkout.store');
 Route::post('/midtrans/webhook', [PaymentWebhookController::class, 'handle'])
-    ->name('midtrans.webhook')
-    ->withoutMiddleware([VerifyCsrfToken::class]);
+    ->name('midtrans.webhook');
 Route::get('/pay/{order}', [CheckoutController::class, 'pay'])->name('customer.pay.snap')->middleware('auth');
 Route::get('/payment/finish',   [PaymentWebhookController::class,'finish'])->name('midtrans.finish');
 Route::get('/payment/unfinish', [PaymentWebhookController::class,'unfinish'])->name('midtrans.unfinish');

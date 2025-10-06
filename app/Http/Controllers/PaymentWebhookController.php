@@ -91,7 +91,37 @@ class PaymentWebhookController extends Controller
     }
 
     // Redirect handlers dari Snap (opsional)
-    public function finish(Request $r)   { /* tampilkan thank you */ }
-    public function unfinish(Request $r) { /* tampilkan pending */ }
-    public function error(Request $r)    { /* tampilkan error */ }
+    public function finish(Request $r)
+    {
+        // Snap akan mengirim query ?order=INV-...
+        $code = (string) $r->query('order');
+
+        // (opsional) cek ada order-nya
+        if (!$code || !\App\Models\Order::where('order_code',$code)->exists()) {
+            return redirect()->route('customer.home')
+                ->with('warning', 'Transaksi selesai, namun order tidak ditemukan.');
+        }
+
+        // arahkan ke halaman thank you
+        return redirect()->route('customer.thankyou', ['code' => $code]);
+    }
+
+    public function unfinish(Request $r)
+    {
+        $code = (string) $r->query('order');
+
+        // arahkan kembali ke detail pesanan / daftar pesanan dengan pesan
+        return redirect()
+            ->route('customer.my-orders.show', ['order' => $code])
+            ->with('info', 'Pembayaran belum selesai. Kamu dapat melanjutkan pembayaran dari halaman pesanan.');
+    }
+
+    public function error(Request $r)
+    {
+        $code = (string) $r->query('order');
+
+        return redirect()
+            ->route('customer.my-orders.show', ['order' => $code])
+            ->with('error', 'Terjadi kesalahan saat memproses pembayaran.');
+    }
 }

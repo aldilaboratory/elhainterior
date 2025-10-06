@@ -69,7 +69,7 @@
                 <div class="flexslider-thumbnails product-gallery-main">
                   <ul class="slides">
                     @forelse($gallery as $img)
-                      <li data-thumb="{{ $img }}" class="img-frame">
+                      <li data-thumb="{{ $img }}" class="">
                         <img src="{{ $img }}" alt="{{ $product->name }}" loading="lazy" decoding="async">
                       </li>
                     @empty
@@ -164,7 +164,7 @@
 							<i class="ti-shopping-cart"></i> Tambah ke Keranjang
 						</button>
 					</form>
-                    <a href="#" class="btn min"><i class="ti-heart"></i></a>
+                    {{-- <a href="#" class="btn min"><i class="ti-heart"></i></a> --}}
                   </div>
                 </div>
               </div>

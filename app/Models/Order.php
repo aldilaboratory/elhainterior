@@ -22,8 +22,11 @@ class Order extends Model
         'total','payment_status','order_status',
         // midtrans
         'snap_token','snap_redirect_url','snap_token_expired_at',
-        'midtrans_status','fraud_status',
-        'midtrans_transaction_id','midtrans_payment_type','midtrans_raw',
+        'midtrans_order_id',        
+        'midtrans_transaction_id',  
+        'midtrans_payment_type',    
+        'midtrans_status',          
+        'fraud_status',             
         // optional channel fields
         'va_number','va_bank','payment_code',
         // timestamps

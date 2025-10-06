@@ -156,7 +156,7 @@
                       <div class="d-grid gap-2 mt-3">
                         <a href="{{ route('customer.home') }}" class="btn btn-outline-secondary">Kembali ke Beranda</a>
                         @auth
-                          <a href="{{ route('customer.orders.show', $order->id) }}" class="btn btn-dark text-white">Lihat Detail Pesanan</a>
+                          <a href="{{ route('customer.my-orders.show', $order->id) }}" class="btn btn-dark text-white">Lihat Detail Pesanan</a>
                         @endauth
                       </div>
                     </div>

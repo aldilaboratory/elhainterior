@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as Middleware;
 
 class VerifyCsrfToken
 {
@@ -19,8 +20,6 @@ class VerifyCsrfToken
     }
 
     protected $except = [
-        'api/midtrans/webhook',
         'midtrans/webhook',
-        'midtrans/notification',
     ];
 }

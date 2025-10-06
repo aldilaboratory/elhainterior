@@ -56,9 +56,9 @@
 							<div class="top-search"><a href="#0"><i class="ti-search"></i></a></div>
 							<!-- Search Form -->
 							<div class="search-top">
-								<form class="search-form">
-									<input type="text" placeholder="Search here..." name="search">
-									<button value="search" type="submit"><i class="ti-search"></i></button>
+								<form class="search-form" method="GET" action="{{ route('customer.all-products') }}">
+									<input type="text" name="q" value="{{ request('q') }}" placeholder="Cari produk...">
+									<button type="submit"><i class="ti-search"></i></button>
 								</form>
 							</div>
 							<!--/ End Search Form -->
@@ -69,9 +69,9 @@
 					<div class="col-lg-8 col-md-7 col-12">
 						<div class="search-bar-top">
 							<div class="search-bar">
-								<form>
-									<input name="search" placeholder="Cari produk di sini..." type="search">
-									<button class="btnn"><i class="ti-search"></i></button>
+								<form method="GET" action="{{ route('customer.all-products') }}">
+									<input name="q" placeholder="Cari produk di sini..." type="search" value="{{ request('q') }}">
+									<button class="btnn" type="submit"><i class="ti-search"></i></button>
 								</form>
 							</div>
 						</div>
@@ -132,6 +132,7 @@
 										<div class="nav-inner">	
 											<ul class="nav main-menu menu navbar-nav">
 												<li><a href="{{ route('customer.home') }}">Beranda</a></li>
+												<li><a href="{{ route('customer.all-products') }}">Semua Produk</a></li>
 												<li><a href="{{ route('customer.my-orders') }}">Pesanan Saya</a></li>
 											</ul>
 										</div>
