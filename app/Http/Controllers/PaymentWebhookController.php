@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Models\Order;
 use Midtrans\Notification;
+use App\Mail\OrderPaidMail;
+use Illuminate\Support\Facades\Mail;
 
 class PaymentWebhookController extends Controller
 {
@@ -69,6 +71,17 @@ class PaymentWebhookController extends Controller
 
         if ($paid && !$order->paid_at) {
             $order->paid_at = now();
+
+            // kirim email invoice ke customer
+            try {
+                Mail::to($order->email)->send(new OrderPaidMail($order));
+                Log::info('Invoice email sent', ['order_id' => $order->id]);
+            } catch (\Throwable $e) {
+                Log::error('Failed to send invoice email', [
+                    'order_id' => $order->id,
+                    'error' => $e->getMessage(),
+                ]);
+            }
         }
 
         $order->fill([

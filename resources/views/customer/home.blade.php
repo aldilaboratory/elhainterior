@@ -25,7 +25,7 @@
 	<!--/ End Slider Area -->
 
     <!-- Start Small Banner  -->
-	<section class="small-banner section">
+	{{-- <section class="small-banner section">
 		<div class="container-fluid">
 			<div class="row">
 				<!-- Single Banner  -->
@@ -66,7 +66,7 @@
 				<!-- /End Single Banner  -->
 			</div>
 		</div>
-	</section>
+	</section> --}}
 	<!-- End Small Banner -->
 
     <!-- Start Best Seller -->
