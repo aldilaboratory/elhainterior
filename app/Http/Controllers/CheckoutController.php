@@ -276,9 +276,10 @@ class CheckoutController extends Controller
         $trx = Snap::createTransaction($params);
 
         $order->update([
-            'midtrans_order_id'       => $order->order_code,     // simpan id yg dipakai Midtrans
+            'midtrans_order_id'       => $order->order_code,
             'snap_token'              => $trx->token,
-            'midtrans_redirect_url'   => $trx->redirect_url,
+            'midtrans_redirect_url'   => $trx->redirect_url, // ✅ Gunakan ini
+            'snap_redirect_url'       => $trx->redirect_url, // Opsional, untuk backup
             'payment_status'          => 'pending',
         ]);
 

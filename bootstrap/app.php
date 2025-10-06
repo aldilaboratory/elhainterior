@@ -14,8 +14,14 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
-            'admin' => AdminMiddleware::class, // <-- alias 'admin'
-            'customer' => EnsureCustomer::class, // <-- alias 'admin'
+            'admin' => AdminMiddleware::class,
+            'customer' => EnsureCustomer::class,
+        ]);
+        
+        // Exclude webhook dari CSRF verification
+        $middleware->validateCsrfTokens(except: [
+            'midtrans/webhook',
+            'midtrans/*',
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
