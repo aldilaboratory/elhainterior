@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Midtrans\Config as MidtransConfig;
@@ -25,6 +26,13 @@ class AppServiceProvider extends ServiceProvider
         MidtransConfig::$is3ds        = config('midtrans.enable_3ds', true);
 
         ini_set('upload_tmp_dir', storage_path('tmp'));
+
+        if (app()->environment('production')) {
+            URL::forceScheme('https');
+        }
+        if (request()->header('X-Forwarded-Proto') === 'https') {
+            URL::forceScheme('https');
+        }
 
         // Kategori untuk header (aman untuk guest)
         View::composer(['layouts.*','partials.*','customer.*'], function ($view) {

@@ -29,45 +29,45 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'phone' => ['required', 'string', 'max:30'],
-            'address' => ['required', 'string', 'max:255'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        $validated = $request->validate([
+            'name'     => 'required|string|max:255',
+            'email'    => 'required|string|lowercase|email|max:255|unique:'.User::class,
+            'phone'    => 'required|string|max:30',
+            'address'  => 'required|string|max:255',
+            'password' => 'required|confirmed|min:8',
+
+            // dari autocomplete
+            'destination_id'    => 'nullable|integer|min:1',
+            'destination_label' => 'nullable|string|max:255',
+            'postal_code'       => 'nullable|string|max:20',
         ]);
 
-        DB::transaction(function() use ($request, &$user) {
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'phone' => $request->phone,
-                'password' => Hash::make($request->password),
-                'role' => 'customer',
-            ]);
+        // Buat user
+        $user = User::create([
+            'name'     => $validated['name'],
+            'email'    => $validated['email'],
+            'phone'    => $validated['phone'],
+            'password' => Hash::make($validated['password']),
+        ]);
 
-            // buat alamat default
-            Address::create([
-                'user_id'        => $user->id,
-                'label'          => 'Utama',
-                'recipient_name' => $user->name,
-                'phone'          => $user->phone,
-                'address_line'   => $request->address,
-                'province'       => $request->input('province'),
-                'city'           => $request->input('city'),
-                'district'       => $request->input('district'),
-                'village'        => $request->input('village'),
-                'postal_code'    => $request->input('postal_code'),
-                'is_default'     => true,
-            ]);
-        });
+        // Opsional: buat Address default dari data register
+        Address::create([
+            'user_id'           => $user->id,
+            'label'             => 'Alamat Utama',
+            'recipient_name'    => $user->name,
+            'phone'             => $validated['phone'],
+            'address_line'      => $validated['address'],
+            'destination_id'    => $validated['destination_id'] ?? null,
+            'destination_label' => $validated['destination_label'] ?? null,
+            'postal_code'       => $validated['postal_code'] ?? null,
+            'is_default'        => true,
+        ]);
 
         event(new Registered($user));
+        auth()->login($user);
 
-        Auth::login($user);
-
-        return redirect(route('customer.home', absolute: false));
+        return redirect()->route('customer.home');
     }
 }

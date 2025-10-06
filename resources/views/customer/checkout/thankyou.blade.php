@@ -14,14 +14,14 @@
               <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
                 <div>
                   <h3 class="mb-1">Terima kasih, pesananmu sudah tercatat!</h3>
-                  <p class="text-muted mb-0">Simpan kode order berikut untuk pelacakan.</p>
+                  {{-- <p class="text-muted mb-0">Simpan kode order berikut untuk pelacakan.</p> --}}
                 </div>
 
                 <div class="text-end">
                   <div class="small text-muted mb-1">Kode Order</div>
                   <div class="d-flex align-items-center justify-content-end gap-2">
                     <span class="fw-bold fs-5" id="order-code">#{{ $order->order_code }}</span>
-                    <button class="btn btn-sm btn-outline-secondary" id="btn-copy-code" type="button">Salin</button>
+                    {{-- <button class="btn btn-sm btn-outline-secondary" id="btn-copy-code" type="button">Salin</button> --}}
                   </div>
 
                   <div class="mt-2">
@@ -156,7 +156,7 @@
                       <div class="d-grid gap-2 mt-3">
                         <a href="{{ route('customer.home') }}" class="btn btn-outline-secondary">Kembali ke Beranda</a>
                         @auth
-                          <a href="{{ route('customer.my-orders.show', $order->id) }}" class="btn btn-dark text-white">Lihat Detail Pesanan</a>
+                          <a href="{{ route('customer.my-orders.show', $order) }}" class="btn btn-dark text-white">Lihat Detail Pesanan</a>
                         @endauth
                       </div>
                     </div>

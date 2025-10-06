@@ -44,10 +44,14 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::resource('categories', CategoryController::class)->parameters(['categories' => 'id']);
     Route::resource('subcategories', SubcategoryController::class)->parameters(['subcategories' => 'id']);
     Route::resource('sales-report', SalesReportController::class);
+    Route::get('/admin/sales-report/export-pdf', [SalesReportController::class, 'exportPdf'])
+    ->name('admin.sales-report.export-pdf');
     Route::resource('stocks-report', StocksReportController::class);
     Route::resource('data-admin', DataAdminController::class)->parameters(['data-admin' => 'id']);
     Route::resource('data-customer', DataCustomerController::class);
 });
+
+
 
 // Route Customer
 Route::middleware(['auth', 'customer'])->group(function () {
@@ -85,6 +89,8 @@ Route::middleware(['auth', 'customer'])->group(function () {
     Route::get('/my-orders', [CustomerOrderController::class, 'index'])->name('customer.my-orders');
     Route::get('/my-orders/{order:order_code}', [CustomerOrderController::class, 'show'])
         ->name('customer.my-orders.show');
+    Route::get('/my-orders/{order:order_code}/invoice', [CustomerOrderController::class, 'invoice'])
+    ->name('customer.my-orders.invoice');
 
     Route::get('/pay/{order}', [CheckoutController::class, 'pay'])
          ->name('customer.pay');
@@ -95,6 +101,9 @@ Route::middleware(['auth', 'customer'])->group(function () {
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('customer.home');
+
+Route::get('/ajax/destination/search', [AddressController::class, 'searchDest'])
+    ->name('ajax.destination.search');
 
 Route::get('/kategori/{category:slug}', [CategoryController::class, 'show'])->name('customer.category');
 Route::get('/kategori/{category:slug}/{subcategory:slug}', [CategoryController::class, 'showSub'])->name('customer.subcategory');

@@ -56,6 +56,9 @@
                     <td><span class="badge {{ $ordBadge }} text-uppercase">{{ $o->order_status }}</span></td>
                     <td class="text-end">
                         <a href="{{ route('customer.my-orders.show', $o) }}" class="btn btn-sm btn-outline-secondary">Detail</a>
+                        {{-- Download Invoice --}}
+                        <a href="{{ route('customer.my-orders.invoice', $o) }}"
+                          class="btn btn-sm btn-outline-primary">Invoice</a>
 
                         @if ($o->payment_status === 'pending')
                             <a href="{{ route('customer.pay.snap', $o) }}" class="btn btn-sm btn-dark">Bayar</a>

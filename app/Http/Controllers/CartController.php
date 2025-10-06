@@ -52,7 +52,7 @@ class CartController extends Controller
         $cart->load('items');
         $cart->addItem($product, $data['qty']);
 
-        return back()->with('success', 'Produk ditambahkan ke keranjang.');
+        return redirect()->route('cart.index')->with('success', 'Produk ditambahkan ke keranjang.');
     }
 
     public function updateItem(Request $request, CartItem $item)

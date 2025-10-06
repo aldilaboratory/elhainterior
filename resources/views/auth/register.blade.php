@@ -41,6 +41,37 @@
                                 <x-input-error :messages="$errors->get('address')" class="mt-2" />
                             </div>
 
+                            {{-- Tujuan (autocomplete RajaOngkir/Komerce) --}}
+                            <div class="mb-3 position-relative">
+                                <x-input-label for="dest_search" :value="__('Tujuan (Kota/Kecamatan)')" />
+                                <input id="dest_search" type="text" class="form-control"
+                                        name="dest_search" value="{{ old('dest_search') }}"
+                                        placeholder="Cari kota/kecamatan…">
+
+                                {{-- Hidden values to be submitted --}}
+                                <input type="hidden" id="destination_id" name="destination_id" value="{{ old('destination_id') }}">
+                                <input type="hidden" id="destination_label" name="destination_label" value="{{ old('destination_label') }}">
+                                <input type="hidden" id="postal_code" name="postal_code" value="{{ old('postal_code') }}">
+
+                                {{-- Hints --}}
+                                <small class="text-muted d-block mt-1" id="dest_hint">
+                                    @if(old('destination_label'))
+                                    Terpilih: {{ old('destination_label') }} ({{ old('postal_code') }})
+                                    @else
+                                    Ketik minimal 3 huruf lalu pilih dari daftar.
+                                    @endif
+                                </small>
+
+                                {{-- Dropdown hasil --}}
+                                <div id="dest_results"
+                                    class="list-group position-absolute w-100 shadow"
+                                    style="z-index: 1000; display:none; max-height: 260px; overflow:auto;">
+                                    {{-- items will be injected --}}
+                                </div>
+
+                                <x-input-error :messages="$errors->get('destination_id')" class="mt-2" />
+                            </div>
+
                             <!-- Password -->
                             <div class="mb-3">
                                 <x-input-label for="password" :value="__('Password')" />
@@ -80,4 +111,72 @@
         </div>
     </div>
 </div>
+<script>
+(function(){
+  const $q     = document.getElementById('dest_search');
+  const $drop  = document.getElementById('dest_results');
+  const $hint  = document.getElementById('dest_hint');
+  const $id    = document.getElementById('destination_id');
+  const $label = document.getElementById('destination_label');
+  const $zip   = document.getElementById('postal_code');
+
+  let t=null, lastQ='';
+
+  function hide(){ $drop.style.display='none'; $drop.innerHTML=''; }
+  function show(){ $drop.style.display='block'; }
+
+  function pick(item){
+    $q.value    = item.label;
+    $id.value   = item.id;
+    $label.value= item.label;
+    $zip.value  = item.postal_code || '';
+    $hint.textContent = `Terpilih: ${item.label}${item.postal_code ? ' ('+item.postal_code+')':''}`;
+    hide();
+  }
+
+  async function search(q){
+    if(q.length < 3){ hide(); return; }
+    if(q === lastQ) return; lastQ = q;
+
+    try{
+      const res = await fetch(`{{ route('ajax.destination.search') }}?q=`+encodeURIComponent(q), {
+        headers: { 'X-Requested-With':'XMLHttpRequest' }
+      });
+      const data = await res.json(); // pastikan controller return JSON: [{id,label,postal_code}]
+      if(!Array.isArray(data) || data.length===0){ hide(); return; }
+
+      $drop.innerHTML = '';
+      data.forEach(it=>{
+        const a = document.createElement('a');
+        a.href  = '#';
+        a.className = 'list-group-item list-group-item-action';
+        a.innerHTML = `
+          <div class="d-flex justify-content-between">
+            <span>${it.label}</span>
+            ${it.postal_code ? `<small class="text-muted">${it.postal_code}</small>`:''}
+          </div>`;
+        a.addEventListener('click',(e)=>{ e.preventDefault(); pick(it); });
+        $drop.appendChild(a);
+      });
+      show();
+    }catch(e){ console.error(e); hide(); }
+  }
+
+  $q.addEventListener('input', function(){
+    clearTimeout(t);
+    const val = this.value.trim();
+    t = setTimeout(()=>search(val), 250);
+    // Reset hidden if user edits text
+    if(val.length < 3){
+      $id.value=''; $label.value=''; $zip.value='';
+      $hint.textContent = 'Ketik minimal 3 huruf lalu pilih dari daftar.';
+    }
+  });
+
+  // click outside → close
+  document.addEventListener('click', function(e){
+    if(! $drop.contains(e.target) && e.target!==$q){ hide(); }
+  });
+})();
+</script>
 </x-app-layout>
