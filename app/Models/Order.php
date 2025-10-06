@@ -6,10 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+    // app/Models/Order.php
     protected $fillable = [
-        'user_id','first_name','last_name','email','phone','address1','address2','postal_code',
-        'subtotal','shipping','total','payment_status','order_status',
-        'order_code','midtrans_order_id','midtrans_transaction_id','midtrans_payment_type','midtrans_raw'
+    'user_id','order_code','first_name','last_name','email','phone',
+    'address1','address2','postal_code',
+    'destination_id','ship_to_region_label',
+    'subtotal','weight_total_gram','shipping',
+    'courier_code','courier_service','shipping_etd',
+    'total','payment_status','order_status',
+    'midtrans_order_id','midtrans_transaction_id','midtrans_payment_type','midtrans_raw',
     ];
 
     public function items() { return $this->hasMany(OrderItem::class); }

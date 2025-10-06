@@ -61,6 +61,8 @@
         <!-- Footer -->
         @include('layouts.footer')
 
+        @stack('scripts')
+
     	<!-- Jquery -->
         <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
         <script src="{{ asset('assets/js/jquery-migrate-3.0.0.js') }}"></script>

@@ -34,5 +34,10 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
-
+    'komerce' => [
+        'dest_base' => env('KOMERCE_DEST_BASE', 'https://rajaongkir.komerce.id/api/v1'),
+        'key'       => env('KOMERCE_KEY'),
+        'header'    => env('KOMERCE_HEADER', 'key'),
+        'prefix'    => env('KOMERCE_PREFIX', ''),
+    ],
 ];
