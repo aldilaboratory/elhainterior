@@ -20,37 +20,16 @@ class AddressController extends Controller
     /** AJAX autocomplete tujuan Komerce/RajaOngkir V2 */
     public function searchDest(Request $request, RajaOngkirService $svc)
     {
-        $q = trim((string) $request->query('q', ''));
-        
+        $q = trim((string) $request->query('q',''));
         if ($q === '') {
             return response()->json(['ok' => true, 'data' => []]);
         }
 
         try {
-            Log::info('Searching destination', [
-                'query' => $q,
-            ]);
-            
-            $rows = $svc->search($q);
-            
-            Log::info('Search results', [
-                'count' => count($rows),
-                'results' => $rows,
-            ]);
-            
-            // TAMBAHKAN INI - return JSON response
+            $rows = $svc->search($q); // [{id,label,postal_code}, ...]
             return response()->json(['ok' => true, 'data' => $rows]);
-            
         } catch (\Throwable $e) {
-            Log::error('Search failed', [
-                'error' => $e->getMessage(),
-                'trace' => $e->getTraceAsString(),
-            ]);
-            
-            return response()->json([
-                'ok' => false, 
-                'message' => $e->getMessage()
-            ], 500);
+            return response()->json(['ok' => false, 'message' => $e->getMessage()], 500);
         }
     }
 

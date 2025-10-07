@@ -50,6 +50,7 @@ class RegisteredUserController extends Controller
             'email'    => $validated['email'],
             'phone'    => $validated['phone'],
             'password' => Hash::make($validated['password']),
+            'role' => 'customer',
         ]);
 
         // Opsional: buat Address default dari data register

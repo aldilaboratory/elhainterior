@@ -19,7 +19,7 @@
             <div class="col-lg-7 col-md-7 col-6">
               <div class="header-right">
                 <!-- notification start -->
-                <div class="notification-box ml-15 d-none d-md-flex">
+                {{-- <div class="notification-box ml-15 d-none d-md-flex">
                   <button class="dropdown-toggle" type="button" id="notification" data-bs-toggle="dropdown"
                     aria-expanded="false">
                     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -74,8 +74,11 @@
                       </a>
                     </li>
                   </ul>
-                </div>
+                </div> --}}
                 <!-- notification end -->
+                @php
+                  $user = auth()->user();
+                @endphp
                 <!-- profile start -->
                 <div class="profile-box ml-15">
                   <button class="dropdown-toggle bg-transparent border-0" type="button" id="profile"
@@ -86,8 +89,8 @@
                           <img src="{{ asset('assets/images/profile.svg') }}" alt="" />
                         </div>
                         <div>
-                          <h6 class="fw-500">Adam Joe</h6>
-                          <p>Admin</p>
+                          <h6 class="fw-500">{{ $user?->name ?? trim(($user?->first_name.' '.$user?->last_name) ?: 'User') }}</h6>
+                          <p>{{ ucfirst($user?->role ?? 'admin') }}</p>
                         </div>
                       </div>
                     </div>
@@ -99,8 +102,10 @@
                           <img src="{{ asset('assets/images/profile.svg') }}" alt="image">
                         </div>
                         <div class="content">
-                          <h4 class="text-sm">Adam Joe</h4>
-                          <a class="text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white text-xs" href="#">Email@gmail.com</a>
+                          <h4 class="text-sm">{{ $user?->name ?? trim(($user?->first_name.' '.$user?->last_name) ?: 'User') }}</h4>
+                          <a class="text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white text-xs" href="#">
+                            {{ $user?->email ?? '-' }}
+                          </a>
                         </div>
                       </div>
                     </li>

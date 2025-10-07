@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon" />
-    <title>PlainAdmin Demo | Bootstrap 5 Admin Template</title>
+    <title>ELHA Interior BackOffice</title>
 
     <!-- ========== All CSS files linkup ========= -->
     <link rel="stylesheet" href="{{ asset('admin-assets/css/bootstrap.min.css') }}" />

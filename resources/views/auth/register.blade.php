@@ -134,19 +134,29 @@
     hide();
   }
 
+  // === BACA { ok, data } ATAU array langsung ===
+  async function fetchRows(q){
+    const res  = await fetch(`{{ route('ajax.destination.search', [], false) }}?q=`+encodeURIComponent(q), {
+      headers: { 'Accept':'application/json', 'X-Requested-With':'XMLHttpRequest' }
+    });
+    const data = await res.json();
+    const rows = Array.isArray(data) ? data : (Array.isArray(data?.data) ? data.data : []);
+    return rows.map(r => ({ id:r.id, label:r.label, postal_code: r.postal_code || r.postcode || r.zip || '' }));
+  }
+
   async function search(q){
     if(q.length < 3){ hide(); return; }
     if(q === lastQ) return; lastQ = q;
 
+    $drop.innerHTML = '<div class="list-group-item">Mencari…</div>';
+    show();
+
     try{
-      const res = await fetch(`{{ route('ajax.destination.search') }}?q=`+encodeURIComponent(q), {
-        headers: { 'X-Requested-With':'XMLHttpRequest' }
-      });
-      const data = await res.json(); // pastikan controller return JSON: [{id,label,postal_code}]
-      if(!Array.isArray(data) || data.length===0){ hide(); return; }
+      const rows = await fetchRows(q);
+      if(!rows.length){ hide(); return; }
 
       $drop.innerHTML = '';
-      data.forEach(it=>{
+      rows.forEach(it=>{
         const a = document.createElement('a');
         a.href  = '#';
         a.className = 'list-group-item list-group-item-action';
@@ -166,14 +176,12 @@
     clearTimeout(t);
     const val = this.value.trim();
     t = setTimeout(()=>search(val), 250);
-    // Reset hidden if user edits text
     if(val.length < 3){
       $id.value=''; $label.value=''; $zip.value='';
       $hint.textContent = 'Ketik minimal 3 huruf lalu pilih dari daftar.';
     }
   });
 
-  // click outside → close
   document.addEventListener('click', function(e){
     if(! $drop.contains(e.target) && e.target!==$q){ hide(); }
   });

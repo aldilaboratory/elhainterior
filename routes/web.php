@@ -38,21 +38,31 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
          ->parameters(['orders' => 'order']);
 
     // route ekstra untuk ubah status (packing/shipped/completed/dll)
+    Route::get('/orders', [OrderAdminController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{order}', [OrderAdminController::class, 'show'])->name('orders.show');
     Route::patch('/orders/{order}/status', [OrderAdminController::class, 'updateStatus'])
          ->name('orders.update-status');
     Route::resource('products', ProductController::class)->parameters(['products' => 'id']);
     Route::resource('categories', CategoryController::class)->parameters(['categories' => 'id']);
     Route::resource('subcategories', SubcategoryController::class)->parameters(['subcategories' => 'id']);
+    
     Route::resource('sales-report', SalesReportController::class);
     Route::get('/admin/sales-report/export-pdf', [SalesReportController::class, 'exportPdf'])
     ->name('admin.sales-report.export-pdf');
-    Route::resource('stocks-report', StocksReportController::class);
+
+    Route::get('/stocks-report', [StocksReportController::class, 'index'])
+    ->name('stocks-report.index');
+    Route::get('/stocks-report/pdf', [StocksReportController::class, 'downloadPdf'])
+    ->name('stocks-report.pdf');
+
     Route::resource('data-admin', DataAdminController::class)->parameters(['data-admin' => 'id']);
     Route::resource('data-customer', DataCustomerController::class);
 });
 
 
-
+// Autocomplete tujuan (kalau kamu pakai pencarian Komerce di modal alamat)
+Route::get('/ajax/destination/search', [AddressController::class, 'searchDest'])
+    ->name('ajax.destination.search');
 // Route Customer
 Route::middleware(['auth', 'customer'])->group(function () {
     Route::get('/', function () {
@@ -68,9 +78,7 @@ Route::middleware(['auth', 'customer'])->group(function () {
     Route::delete('/addresses/{address}', [AddressController::class, 'destroy'])->name('addresses.destroy');
     Route::patch('/addresses/{address}/make-default', [AddressController::class, 'makeDefault'])->name('addresses.make-default');
 
-    // Autocomplete tujuan (kalau kamu pakai pencarian Komerce di modal alamat)
-    Route::get('/ajax/destination/search', [AddressController::class, 'searchDest'])
-        ->name('ajax.destination.search');
+
 
     // AJAX hitung ongkir
     Route::post('/ajax/shipping/cost', [ShippingController::class, 'cost'])

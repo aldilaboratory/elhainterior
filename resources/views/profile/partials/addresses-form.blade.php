@@ -225,8 +225,9 @@
     async function aoSearch(q){
       const res = await fetch(`{{ route('ajax.destination.search', [], false) }}?q=${encodeURIComponent(q)}`, {headers:{'Accept':'application/json'}});
       const data = await res.json();
-      if(!data.ok) return [];
-      return (data.data||[]).map(r=>({id:r.id,label:r.label}));
+
+      const rows = Array.isArray(data) ? data : (Array.isArray(data?.data) ? data.data : []);
+      return rows.map(r => ({ id:r.id, label:r.label, postal_code:r.postal_code }));
     }
     function wireAutocomplete(input, list, hidId, hidLbl){
       let t=null, last='';

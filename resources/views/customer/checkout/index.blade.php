@@ -285,13 +285,11 @@
       const url = `{{ route('ajax.destination.search', [], false) }}?q=${encodeURIComponent(q)}`;
       const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
       const data = await res.json();
-      if (!data.ok) return [];
-      return (data.data || []).map(r => ({
-        id: r.id,
-        label: r.label,
-        postal_code: r.postal_code || r.postcode || r.zip || ''
-      }));
+
+      const rows = Array.isArray(data) ? data : (Array.isArray(data?.data) ? data.data : []);
+      return rows.map(r => ({ id:r.id, label:r.label, postal_code:r.postal_code || r.postcode || r.zip || '' }));
     }
+
     qInput?.addEventListener('input', () => {
       const q = qInput.value.trim();
       hidId.value = ''; hidLbl.value='';

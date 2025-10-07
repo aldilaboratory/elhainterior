@@ -141,7 +141,7 @@
             </a>
           </li>
 
-          <span class="divider"><hr /></span>
+          {{-- <span class="divider"><hr /></span>
 
           <li class="nav-item">
             <a href="notification.html">
@@ -159,7 +159,7 @@
               </span>
               <span class="text">Notifikasi</span>
             </a>
-          </li>
+          </li> --}}
         </ul>
       </nav>
     </aside>
