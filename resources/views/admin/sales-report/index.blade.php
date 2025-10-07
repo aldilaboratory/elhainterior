@@ -14,7 +14,7 @@
         <label class="form-label small text-muted">Sampai Tanggal</label>
         <input type="date" name="to" value="{{ $to }}" class="form-control">
       </div>
-      <div class="col-md-3">
+      {{-- <div class="col-md-3">
         <label class="form-label small text-muted">Status Pembayaran</label>
         <select name="status" class="form-select">
           <option value="all" {{ $status==='all'?'selected':'' }}>Semua</option>
@@ -22,7 +22,7 @@
           <option value="pending" {{ $status==='pending'?'selected':'' }}>Pending</option>
           <option value="failed" {{ $status==='failed'?'selected':'' }}>Gagal</option>
         </select>
-      </div>
+      </div> --}}
       <div class="col-md-3 d-flex align-items-end">
         <button class="btn btn-dark me-2">Tampilkan</button>
         <a href="{{ route('admin.sales-report.index') }}" class="btn btn-outline-secondary">Reset</a>
@@ -39,7 +39,8 @@
           </div>
         </div>
         <div>
-          <a href="#" class="btn btn-sm btn-outline-primary">
+          <a href="{{ route('admin.sales-report.export-pdf', request()->only('from','to')) }}"
+            class="btn btn-sm btn-outline-primary" target="_blank" rel="noopener">
             <i class="ti ti-download"></i> Export PDF
           </a>
         </div>
@@ -57,7 +58,6 @@
               <th>Kode Order</th>
               <th>Customer</th>
               <th>Total</th>
-              <th>Status</th>
             </tr>
           </thead>
           <tbody>
@@ -68,7 +68,7 @@
                 <td>{{ $order->order_code }}</td>
                 <td>{{ $order->first_name }}</td>
                 <td>Rp{{ number_format($order->total,0,',','.') }}</td>
-                <td>
+                {{-- <td>
                   @if($order->payment_status === 'paid')
                     <span class="badge bg-success">Lunas</span>
                   @elseif($order->payment_status === 'pending')
@@ -76,7 +76,7 @@
                   @else
                     <span class="badge bg-danger">Gagal</span>
                   @endif
-                </td>
+                </td> --}}
               </tr>
             @empty
               <tr>

@@ -46,9 +46,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::resource('categories', CategoryController::class)->parameters(['categories' => 'id']);
     Route::resource('subcategories', SubcategoryController::class)->parameters(['subcategories' => 'id']);
     
-    Route::resource('sales-report', SalesReportController::class);
-    Route::get('/admin/sales-report/export-pdf', [SalesReportController::class, 'exportPdf'])
-    ->name('admin.sales-report.export-pdf');
+    Route::get('/sales-report', [SalesReportController::class, 'index'])->name('sales-report.index');
+    Route::get('/sales-report/export-pdf', [SalesReportController::class, 'exportPdf'])->name('sales-report.export-pdf');
 
     Route::get('/stocks-report', [StocksReportController::class, 'index'])
     ->name('stocks-report.index');
